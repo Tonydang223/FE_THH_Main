@@ -1,0 +1,84 @@
+.wrap_contactFormIntro {
+    margin: 115px 7.5rem 85px 7.5rem;
+
+    .ant-form-item {
+        margin-bottom: 15px;
+    }
+
+    input,
+    textarea {
+        background-color: transparent !important;
+    }
+
+    textarea:hover,
+    input:hover,
+    textarea:focus,
+    input:focus {
+        border: 1px solid #e5e5e5;
+    }
+
+    textarea {
+        height: 190px;
+    }
+
+    .row {
+        padding: 0 12px;
+        .col-6 {
+            padding: 15px 25px 10px 0px;
+        }
+        .col-6:nth-child(1) {
+            h1 {
+                font-size: 32px;
+                font-weight: 800;
+                line-height: 46px;
+                color: #7F1416;
+                text-transform: uppercase;
+            }
+            p {
+                color: #676767;
+                font-size: 15px;
+                font-weight: 300;
+                text-align: justify;
+                margin: 15px 0;
+            }
+            ul {
+                li {
+                   margin: 4px 0; 
+                   span {
+                    font-weight: 600;
+                    color: #000;
+                   }
+                   color: #d0021c;
+                   font-weight: 300;
+                   font-size: 15px;
+                }
+            }
+        }
+        .col-6:nth-child(2) {
+            border-left: 1px dashed #d0021c;
+            padding: 20px 0px 0px 32px;
+            h4 {
+                margin-bottom: 20px;
+                font-size: 18px;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+            }
+
+            form {
+                button {
+                    width: 125px;
+                    height: 35px;
+                    border-radius: 10px;
+                    border: none;
+                    background-color: #7F1416;
+                    color: #fff !important;
+                    text-transform: uppercase;
+                }
+                input {
+                    padding: 8px 11px;
+                }
+            }
+        }
+    }
+}

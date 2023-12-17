@@ -1,0 +1,189 @@
+footer {
+    background-color: #7F1416;
+
+    .wrapInside_foot {
+        padding: 2rem 4.2rem;
+    }
+
+    .foot_p1,
+    .foot_p2 {
+        padding-bottom: 12px;
+        border-bottom: 1px solid #fff;
+    }
+
+    .foot_p3 {
+        padding-top: 15px;
+    }
+
+    .foot_p3 p {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 200;
+    }
+
+    .foot_p3 p:nth-child(2) span:nth-child(2) {
+        color: #E47D7F;
+        font-weight: 400;
+    }
+
+    .foot_p3 p:nth-child(2) span:nth-child(1) {
+        padding: 3px;
+    }
+
+
+    .foot_p1_logo_social .w-f_p1_loSo {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 12px;
+    }
+
+    .foot_p1_logo_social .w-f_p1_loSo:nth-child(1) {
+        margin-left: 11px;
+        margin-right: 11px;
+    }
+
+    .foot_p2 .row {
+        padding: 30px 0;
+    }
+
+    .foot_p2 .row .col-3 h3 {
+        font-size: 17px;
+        font-weight: 300;
+        line-height: 22px;
+        color: #fff;
+        letter-spacing: 0.8px;
+        margin-bottom: 20px;
+    }
+
+    .foot_p2 .row .col-3:nth-child(1) ul {
+        margin-top: 15px;
+    }
+
+    .foot_p2 .row .col-3:nth-child(1) ul li span,
+    .foot_p2 .row .col-3:nth-child(2) ul li p:nth-child(2) span {
+        padding-right: 7px;
+    }
+
+    .foot_p2 .row .col-3:nth-child(1) ul li,
+    .foot_p2 .row .col-3:nth-child(2) ul li p:nth-child(2) {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 200;
+    }
+
+    .foot_p2 .row .col-3:nth-child(1) ul li {
+        margin-top: 15px;
+    }
+
+    .foot_p2 .row .col-3:nth-child(2) ul li p:nth-child(1) {
+        font-size: 16px;
+        color: #E47D7F;
+        font-weight: 500;
+        line-height: 22px;
+    }
+}
+
+header.header_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.8px solid #e5e5e5;
+    input, textarea, .ant-input-affix-wrapper {
+        background-color: #fff !important;
+        border-color: #e5e5e5 !important;
+        border-radius: 15px;
+    }
+    .ant-input-affix-wrapper:hover {
+        border-color: #fff;
+    }
+    .logoheadertop {
+        width: 125px;
+        height: 125px;
+    }
+}
+
+header.header_top > div {
+    width: 33.33333%
+}
+header.header_top > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header.header_top > div:nth-child(3) {
+    display: flex;
+    justify-content: flex-end;
+    button {
+        margin-right: 30px;
+        width: 125px;
+        height: 35px;
+        border-radius: 10px;
+        border: none;
+        background-color: #7F1416;
+        color: #fff !important;
+        text-transform: uppercase;
+    }
+    button:hover span {
+        color: #fff !important;
+    }
+    button:hover {
+        background-color: #E47D7F;
+    }
+}
+
+header.header_bottom {
+    display: flex;
+    justify-content: center;
+
+    .repo_header_bot,
+    .logoheader {
+        display: none;
+    }
+
+    .repo_header_bot {
+        margin-top: 45px;
+        margin-right: 15px;
+    }
+
+    .menus {
+        display: block;
+        width: 100%;
+    }
+
+    .logoheader {
+        width: 90px;
+        height: 90px;
+        margin: 8px 0;
+    }
+
+    .ant-menu-horizontal .ant-menu-item {
+        padding-inline: 0 !important;
+        padding: 15px 40px !important;
+    }
+
+    .ant-menu-light.ant-menu-horizontal>.ant-menu-item:hover::after,
+    .ant-menu-light.ant-menu-horizontal>.ant-menu-item-selected::after {
+        border-bottom-width: 0 !important;
+        border-bottom-color: transparent;
+    }
+
+    .ant-menu-overflow {
+        justify-content: center;
+    }
+
+    .ant-menu-light.ant-menu-horizontal>.ant-menu-item-selected .ant-menu-title-content {
+        color: #7F1416 !important;
+    }
+
+    .ant-menu-light.ant-menu-horizontal>.ant-menu-item:hover .ant-menu-title-content {
+        color: #848484 !important;
+    }
+
+    .ant-menu .ant-menu-title-content {
+        font-size: 16px;
+        line-height: 22px;
+        text-transform: uppercase;
+        font-weight: 300;
+        color: #222;
+    }
+}

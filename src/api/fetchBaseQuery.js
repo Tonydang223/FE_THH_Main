@@ -2,7 +2,7 @@ import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { Mutex } from "async-mutex";
 import { logOut, setToken } from "../pages/Auth/authSlice";
 
-const baseUrl = `${import.meta.env._URL_API}/`;
+const baseUrl = `${import.meta.env.EN_URL_API}/`;
 
 const baseQuery = fetchBaseQuery({
   baseUrl,
@@ -40,7 +40,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
         } else {
             api.dispatch(logOut());
             window.location.href = "/login";
-        }
+          }
       } finally {
         // release must be called once the mutex should be released again.
         release();

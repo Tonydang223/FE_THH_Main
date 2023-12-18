@@ -10,8 +10,11 @@ import ImageDa from "../../assets/anhbenhnhan.jpg";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { FaCirclePlay } from "react-icons/fa6";
 import Banner from "../../components/customs/Banner";
-import ContactFormIntro from "../../components/customs/ContactForm"
-import {useNavigate} from 'react-router-dom'
+import ContactFormIntro from "../../components/customs/ContactForm";
+import { useNavigate } from "react-router-dom";
+import { showGlobal } from "../../components/Modals/ModalFirm";
+import { TikTokEmbed } from "react-social-media-embed";
+import ReactPlayer from "react-player";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -76,6 +79,23 @@ export default function Home() {
       img: () => <img src={ImageDa} />,
     },
   ];
+
+  const showModalVid = (data) => {
+    showGlobal({
+      body: (
+        <div style={{ margin: "40px" }}>
+          {data?.kind === "tiktok" ? (
+            <TikTokEmbed url={data.url} width={"100%"} muted={false} />
+          ) : (
+            <ReactPlayer url={data.url} width="100%" controls />
+          )}
+        </div>
+      ),
+      footer: [],
+      width: 1000,
+      title: data.title,
+    });
+  };
   return (
     <div className="wrap_home">
       <Slider {...settings}>
@@ -198,7 +218,9 @@ export default function Home() {
                   ea commodo. Exercitation ullamco laboris nisi ut aliquip ex ea
                   commodo.
                 </p>
-                <Button onClick={() => navigate('/course/detail/1')}>Chi tiết</Button>
+                <Button onClick={() => navigate("/course/detail/1")}>
+                  Chi tiết
+                </Button>
               </div>
             </div>
           </div>
@@ -299,7 +321,16 @@ export default function Home() {
           <div className="col-4">
             <div className="vid">
               <div className="vid_content">
-                <FaCirclePlay color="#fff" size={45} />
+                <FaCirclePlay
+                  color="#fff"
+                  size={45}
+                  onClick={() =>
+                    showModalVid({
+                      url: "https://www.youtube.com/watch?v=UJSw8hAI4Ys",
+                      title: "Video Youtube",
+                    })
+                  }
+                />
               </div>
               <img src={BannerProduct} />
             </div>
@@ -307,7 +338,16 @@ export default function Home() {
           <div className="col-4">
             <div className="vid">
               <div className="vid_content">
-                <FaCirclePlay color="#fff" size={45} />
+                <FaCirclePlay
+                  color="#fff"
+                  size={45}
+                  onClick={() =>
+                    showModalVid({
+                      url: "https://www.youtube.com/watch?v=l_7JJ4WpPeU",
+                      title: "Video Youtube",
+                    })
+                  }
+                />
               </div>
               <img src={BannerProduct} />
             </div>
@@ -339,7 +379,16 @@ export default function Home() {
           <div className="col-4">
             <div className="vid">
               <div className="vid_content">
-                <FaCirclePlay color="#fff" size={45} />
+                <FaCirclePlay
+                  color="#fff"
+                  size={45}
+                  onClick={() =>
+                    showModalVid({
+                      url: "https://www.youtube.com/watch?v=SYLv5OM5kcg",
+                      title: "Video Youtube",
+                    })
+                  }
+                />
               </div>
               <img src={BannerProduct} />
             </div>
@@ -347,7 +396,16 @@ export default function Home() {
           <div className="col-4">
             <div className="vid">
               <div className="vid_content">
-                <FaCirclePlay color="#fff" size={45} />
+                <FaCirclePlay
+                  color="#fff"
+                  size={45}
+                  onClick={() =>
+                    showModalVid({
+                      url: "https://www.youtube.com/watch?v=UJSw8hAI4Ys",
+                      title: "Video Youtube",
+                    })
+                  }
+                />
               </div>
               <img src={BannerProduct} />
             </div>
@@ -355,7 +413,16 @@ export default function Home() {
           <div className="col-4">
             <div className="vid">
               <div className="vid_content">
-                <FaCirclePlay color="#fff" size={45} />
+                <FaCirclePlay
+                  color="#fff"
+                  size={45}
+                  onClick={() =>
+                    showModalVid({
+                      url: "https://www.youtube.com/watch?v=l_7JJ4WpPeU",
+                      title: "Video Youtube",
+                    })
+                  }
+                />
               </div>
               <img src={BannerProduct} />
             </div>
@@ -368,7 +435,17 @@ export default function Home() {
           <div className="col-4">
             <div className="vid">
               <div className="vid_content">
-                <FaCirclePlay color="#fff" size={45} />
+                <FaCirclePlay
+                  color="#fff"
+                  size={45}
+                  onClick={() =>
+                    showModalVid({
+                      url: "https://www.tiktok.com/@bs.tranhoanghai/video/7256683839639129345",
+                      title: "Video Tiktok",
+                      kind: "tiktok",
+                    })
+                  }
+                />
               </div>
               <img src={BannerProduct} />
             </div>
@@ -376,7 +453,17 @@ export default function Home() {
           <div className="col-4">
             <div className="vid">
               <div className="vid_content">
-                <FaCirclePlay color="#fff" size={45} />
+                <FaCirclePlay
+                  color="#fff"
+                  size={45}
+                  onClick={() =>
+                    showModalVid({
+                      url: "https://www.tiktok.com/@bs.tranhoanghai/video/7207330070128495873",
+                      title: "Video Tiktok",
+                      kind: "tiktok",
+                    })
+                  }
+                />
               </div>
               <img src={BannerProduct} />
             </div>
@@ -384,7 +471,17 @@ export default function Home() {
           <div className="col-4">
             <div className="vid">
               <div className="vid_content">
-                <FaCirclePlay color="#fff" size={45} />
+                <FaCirclePlay
+                  color="#fff"
+                  size={45}
+                  onClick={() =>
+                    showModalVid({
+                      url: "https://www.tiktok.com/@bs.tranhoanghai/video/7199840736706039041",
+                      title: "Video Tiktok",
+                      kind: "tiktok",
+                    })
+                  }
+                />
               </div>
               <img src={BannerProduct} />
             </div>

@@ -2,8 +2,14 @@ import "./Product.scss";
 import BannerProduct from "../../assets/bannerProduct.png";
 import Categories from "./components/Categories"
 import Products from "./components/Products"
+import { useCallback, useState } from "react"
 
 export default function MainProduct() {
+  const [filterV, setFilterV] = useState('all');
+  const setFilters = useCallback((name) => {
+    setFilterV(name)
+  }, [filterV])
+
   return (
     <div className="wrapProduct">
       <div className="banner">
@@ -21,8 +27,8 @@ export default function MainProduct() {
            <img src={BannerProduct} alt="banner product tran hoang hai" />
         </div>
       </div>
-      <Categories />
-      <Products />
+      <Categories setFilter={setFilters}/>
+      <Products filter={filterV}/>
     </div>
   );
 }

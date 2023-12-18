@@ -3,26 +3,32 @@ import VectorUnder from "../../../assets/vectorUnderline.png";
 import { List, Button, Skeleton } from "antd";
 import BannerAdvartizing from '../../../assets/bannerProduct.png';
 import {useNavigate} from 'react-router-dom';
+import { useEffect, useState, } from "react";
+import PropTypes from "prop-types";
 
 
 
-export default function Products() {
+function Products({filter}) {
+  
   const navigate = useNavigate();
 
+
+  const [dataP, setDataP] = useState([]);
   const { data, isFetching } = useGetProductQuery();
   
-  const newdas = Array.from({ length: 120 }).map((_, i) => {
-    return {
-      _id: i,
-      categories: data && data[0].categories,
-      imgs: data && data[0].imgs,
-      discount: data && data[0].discount,
-      title: data && data[0].title,
-      price: data && data[0].price + i,
-    };
-  });
 
-  console.log("🚀 ~ file: Products.jsx:20 ~ newdas ~ newdas:");
+  useEffect(() => {
+      if(data) {
+        if (filter !== 'all') {
+          let filterNew = [...data];
+          filterNew = filterNew.filter(f => f.categories === filter);
+          setDataP(filterNew);
+        } else {
+          setDataP(data);
+        }
+      }
+  }, [isFetching, filter])
+
 
   return (
     <div className="wrap_products">
@@ -60,9 +66,9 @@ export default function Products() {
                   return originalElement;
                 },
               }}
-              dataSource={newdas}
+              dataSource={dataP}
               renderItem={(item) => (
-                <div className="card_product" onClick={() => navigate('/product/detail/1')}>
+                <div className="card_product" onClick={() => navigate(`/product/detail/${item._id}`)}>
                   {item.discount > 0 && <label>{item.discount}%</label>}
                   <div>
                     <img src={item.imgs[0].url} />
@@ -75,7 +81,10 @@ export default function Products() {
                     </p>
                   </div>
                   <div className="card_product_btn">
-                    <Button className="btn_card_product">Liên hệ</Button>
+                    <Button className="btn_card_product" onClick={(event) => {
+                        event.stopPropagation();
+                        // window.open("https://www.youtube.com/watch?v=BNYaSeT2rUE", "_blank");
+                    }}>Liên hệ</Button>
                   </div>
                 </div>
               )}
@@ -84,26 +93,26 @@ export default function Products() {
           <div className="productAdvertizing">
             <h5>Sản phẩm bán chạy</h5>
             <div className="list_productRun">
-              {newdas
+              {[...data]
                 .sort((a, b) => b.price - a.price)
                 .slice(0, 4)
                 .map((i) => (
-                  <>
-                    <div className="box_list_productRun">
+                    <div className="box_list_productRun" style={{cursor: 'pointer'}} key={i._id} onClick={() => navigate(`/product/detail/${i._id}`)}>
                       <img src={i.imgs[0].url} />
                       <div>
                         <p>
-                          fasfasfasfasfasfasfasfasfasfasfas fasfasfasfasfasfas
-                          fasfasfasfasfasfas fasfasfasfasfasfas
+                          {i.title}
                         </p>
                         <p>
                           {Number(i.price).toLocaleString("en-US")}₫{" "}
                           <span>/Hộp</span>
                         </p>
-                        <a>Liên Hệ</a>
+                        <a onClick={(e) => {
+                          e.stopPropagation();
+                          console.log('vo line he')
+                        }}>Liên Hệ</a>
                       </div>
                     </div>
-                  </>
                 ))}
             </div>
             <h5 className="productAdvertizing_p2_title">Dược liệu quý </h5>
@@ -123,3 +132,8 @@ export default function Products() {
     </div>
   );
 }
+
+export default Products
+Products.propTypes = {
+  filter: PropTypes.string,
+};

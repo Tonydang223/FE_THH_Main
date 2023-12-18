@@ -18,6 +18,17 @@ export const productApis = createApi({
         return response.data;
       },
     }),
+    getOneProduct: builder.query({
+      query: (query) => {
+        return {
+          url: `products/${query}`,
+          credentials: "include",
+        };
+      },
+      transformResponse: (response) => {
+        return response.data;
+      },
+    }),
     addComment: builder.mutation({
       query: (body) => {
         return {
@@ -72,4 +83,5 @@ export const {
   useGetAllCommentsQuery,
   useEditCommentMutation,
   useDelCommentMutation,
+  useGetOneProductQuery,
 } = productApis;

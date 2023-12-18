@@ -16,9 +16,11 @@ import { FaCheck } from "react-icons/fa6";
 import IntroImg from "../../assets/introImg.png";
 import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-import ContactFormIntro from "../../components/customs/ContactForm"
+import ContactFormIntro from "../../components/customs/ContactForm";
+import {useNavigate} from 'react-router-dom';
 
 export default function MainCourse() {
+  const navigate = useNavigate();
   const settings = {
     dots: true,
     infinite: true,
@@ -119,7 +121,7 @@ export default function MainCourse() {
                   ea commodo. Exercitation ullamco laboris nisi ut aliquip ex ea
                   commodo.
                 </p>
-                <Button>Chi tiết</Button>
+                <Button onClick={() => navigate("/course/detail/1")}>Chi tiết</Button>
               </div>
             </div>
           </div>
@@ -138,7 +140,7 @@ export default function MainCourse() {
                   ea commodo. Exercitation ullamco laboris nisi ut aliquip ex ea
                   commodo.
                 </p>
-                <Button>Chi tiết</Button>
+                <Button onClick={() => navigate("/course/detail/1")}>Chi tiết</Button>
               </div>
             </div>
           </div>
@@ -157,7 +159,7 @@ export default function MainCourse() {
                   ea commodo. Exercitation ullamco laboris nisi ut aliquip ex ea
                   commodo.
                 </p>
-                <Button>Chi tiết</Button>
+                <Button onClick={() => navigate("/course/detail/1")}>Chi tiết</Button>
               </div>
             </div>
           </div>

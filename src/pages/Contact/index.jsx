@@ -5,10 +5,19 @@ import { LuUser2 } from "react-icons/lu";
 import { BsTelephone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { CiStickyNote } from "react-icons/ci";
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-  const onFinish = async (values) => {
-    console.log("Received values of form: ", values);
+  const [form] = Form.useForm();
+  const onFinish = async () => {
+    emailjs.sendForm('service_32lhkul', 'template_ljf35dn', '#formContact', '3sgAogo8uVOFWAfg5')
+    .then(() => {
+        message.success("Nội dung đã được gửi thành công");
+        form.resetFields();
+    }, (error) => {
+        message.error(error.text)
+    });
+
   };
   return (
     <div className="formContactWrap">
@@ -32,19 +41,22 @@ export default function Contact() {
           <Form
             name="normal_login"
             className="login-form"
+            form={form}
+            id="formContact"
             onFinish={onFinish}
             style={{ margin: "10px 200px" }}
           >
             <div className="row">
               <div className="col-6">
                 <Form.Item
-                  name="username"
+                  name="name"
                   hasFeedback
                   rules={[{ required: true, message: "Làm ơn nhập tên!" }]}
                 >
                   <Input
                     style={{ padding: "8px 11px" }}
                     prefix={<LuUser2 />}
+                    name="name"
                     placeholder="Họ và tên"
                   />
                 </Form.Item>
@@ -60,6 +72,7 @@ export default function Contact() {
                   <Input
                     style={{ padding: "8px 11px" }}
                     type="number"
+                    name="phone"
                     prefix={<BsTelephone />}
                     placeholder="Số điện thoại"
                   />
@@ -82,17 +95,19 @@ export default function Contact() {
                 style={{ padding: "8px 11px" }}
                 prefix={<HiOutlineMail />}
                 placeholder="Email"
+                name="email"
               />
             </Form.Item>
 
             <Form.Item
-              name="note"
+              name="message"
               rules={[{ required: true, message: "Làm ơn nhập ghi chú" }]}
             >
               <Input.TextArea
                 showCount
                 style={{ height: "162px" }}
                 placeholder="Ghi chú"
+                name="message"
                 prefix={<CiStickyNote />}
               />
             </Form.Item>

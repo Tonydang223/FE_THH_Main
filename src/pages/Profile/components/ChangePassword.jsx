@@ -26,7 +26,6 @@ export default function ChangePassword() {
   }, [updatePassRes.isLoading]);
 
   const onFinish = async (values) => {
-    console.log("Received values of form: ", values);
     await updatePass(values).unwrap();
   };
   return (

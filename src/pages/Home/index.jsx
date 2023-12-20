@@ -1,5 +1,5 @@
 import Slider from "react-slick";
-import { Button } from "antd";
+import { Button, Skeleton } from "antd";
 import "./home.scss";
 import VectorUnder from "../../assets/vectorUnderline.png";
 import { HiMiniChevronDoubleRight } from "react-icons/hi2";
@@ -15,9 +15,19 @@ import { useNavigate } from "react-router-dom";
 import { showGlobal } from "../../components/Modals/ModalFirm";
 import { TikTokEmbed } from "react-social-media-embed";
 import ReactPlayer from "react-player";
+import { useSelector } from "react-redux";
+import { useGetLecturesOfCourseQuery } from "../Courses/course.service";
 
 export default function Home() {
   const navigate = useNavigate();
+  const { posts, courses } = useSelector((state) => {
+    return state;
+  });
+
+  const lectureOfCourse = useGetLecturesOfCourseQuery(courses.courses[0]?._id, {
+    skip: !courses.courses[0]?._id,
+  });
+
   const settings = {
     dots: true,
     fade: true,
@@ -50,32 +60,6 @@ export default function Home() {
       title: "Tình trạng dạ dày",
       content:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
-      img: () => <img src={ImageDa} />,
-    },
-  ];
-  const sicksList = [
-    {
-      title: "Bệnh Thận – Nội Tiết",
-      content:
-        "Viêm loét dạ dày, hành tá tràng, trào ngược dạ dày, Viêm đại tràng, đại tràng co thắt, Rối loạn tiêu hóa, Sa dạ dày, Trĩ nội, trĩ ngoại…",
-      img: () => <img src={ImageDa} />,
-    },
-    {
-      title: "Bệnh Thận – Nội Tiết",
-      content:
-        "Viêm loét dạ dày, hành tá tràng, trào ngược dạ dày, Viêm đại tràng, đại tràng co thắt, Rối loạn tiêu hóa, Sa dạ dày, Trĩ nội, trĩ ngoại…",
-      img: () => <img src={ImageDa} />,
-    },
-    {
-      title: "Bệnh Thận – Nội Tiết",
-      content:
-        "Viêm loét dạ dày, hành tá tràng, trào ngược dạ dày, Viêm đại tràng, đại tràng co thắt, Rối loạn tiêu hóa, Sa dạ dày, Trĩ nội, trĩ ngoại…",
-      img: () => <img src={ImageDa} />,
-    },
-    {
-      title: "Bệnh Thận – Nội Tiết",
-      content:
-        "Viêm loét dạ dày, hành tá tràng, trào ngược dạ dày, Viêm đại tràng, đại tràng co thắt, Rối loạn tiêu hóa, Sa dạ dày, Trĩ nội, trĩ ngoại…",
       img: () => <img src={ImageDa} />,
     },
   ];
@@ -167,22 +151,36 @@ export default function Home() {
         </div>
         <div className="list_sick">
           <div className="row">
-            {sicksList.map((t) => (
+            {posts.activeLoading ? (
+              <Skeleton />
+            ) : (
               <>
-                <div className="col-3">
-                  <div>
-                    {t.img()}
-                    <h5>{t.title}</h5>
-                    <p>{t.content}</p>
-                  </div>
-                </div>
+                {posts?.posts
+                  .filter((p) => p.categories === "health")
+                  .slice(0, 3)
+                  .map((t) => (
+                    <>
+                      <div
+                        style={{ cursor: "pointer" }}
+                        className="col-4"
+                        key={t._id}
+                        onClick={() => navigate(`/blog/detail/${t._id}`)}
+                      >
+                        <div>
+                          <img src={t.thumbnail.url} />
+                          <h5>{t.title}</h5>
+                          <p>{t.short_des}</p>
+                        </div>
+                      </div>
+                    </>
+                  ))}
               </>
-            ))}
+            )}
           </div>
 
           <p style={{ textAlign: "center", margin: "25px 0" }}>
-            <Button className="btn-fade">
-              Xem Thêm{" "}
+            <Button className="btn-fade" onClick={() => navigate("/blog/list")}>
+              Xem Thêm
               <span>
                 <HiMiniChevronDoubleRight />
               </span>
@@ -204,115 +202,104 @@ export default function Home() {
         </div>
         <div className="row">
           <div className="col-4">
-            <div className="box_course">
-              <div className="box_course_img">
-                <img src={AnhMat} />
+            {courses.activeLoading ? (
+              <Skeleton />
+            ) : (
+              <div className="box_course">
+                <div className="box_course_img">
+                  <img src={courses.courses[0]?.thumbnail.url} />
+                </div>
+                <div className="box_course_content">
+                  <h5>{courses.courses[0]?.title}</h5>
+                  <p>{courses.courses[0]?.instructor_by}</p>
+                  <p>{courses.courses[0]?.short_des}</p>
+                  <Button
+                    onClick={() =>
+                      navigate(`/course/detail/${courses.courses[0]?._id}`)
+                    }
+                  >
+                    Chi tiết
+                  </Button>
+                </div>
               </div>
-              <div className="box_course_content">
-                <h5>KHOÁ HỌC CHĂM SÓC DA CHĂM SÓC DACHĂM SÓC DACHĂM SÓC DA</h5>
-                <p>Bác sĩ Hải</p>
-                <p>
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo.Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                  ea commodo. Exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo.
-                </p>
-                <Button onClick={() => navigate("/course/detail/1")}>
-                  Chi tiết
-                </Button>
-              </div>
-            </div>
+            )}
           </div>
           <div className="col-8">
-            <div className="box_wrapDetCour">
-              <h1>Lorem Ipsum is simply dummy text of the printing</h1>
-              <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters, as opposed to using Content
-                here, content here, making it look like readable English. Many
-                desktop publishing packages and web page editors now use Lorem
-                Ipsum as their default model text, and a search for lorem ipsum
-                will uncover many web sites still in their infancy.
-              </p>
-            </div>
-            <div className="box_wrapDetCour_under row">
-              <div className="bar_det_lecture col-6">
-                <h4>bài học</h4>
-                <div className="bar_det">
-                  <div>
-                    <div className="bar_det_border">
-                      <h2>1</h2>
-                    </div>
-                    <h5>Bài học 1</h5>
-                  </div>
-                  <Button>Chi tiết</Button>
+            {lectureOfCourse.isFetching ? (
+              <Skeleton />
+            ) : (
+              <>
+                <div className="box_wrapDetCour">
+                  <h1>Lorem Ipsum is simply dummy text of the printing</h1>
+                  <p>
+                    It is a long established fact that a reader will be
+                    distracted by the readable content of a page when looking at
+                    its layout. The point of using Lorem Ipsum is that it has a
+                    more-or-less normal distribution of letters, as opposed to
+                    using Content here, content here, making it look like
+                    readable English. Many desktop publishing packages and web
+                    page editors now use Lorem Ipsum as their default model
+                    text, and a search for lorem ipsum will uncover many web
+                    sites still in their infancy.
+                  </p>
                 </div>
-                <div className="bar_det">
-                  <div>
-                    <div className="bar_det_border">
-                      <h2>1</h2>
-                    </div>
-                    <h5>Bài học 2</h5>
+                <div className="box_wrapDetCour_under row">
+                  <div className="bar_det_lecture col-6">
+                    <h4>bài học</h4>
+                    {lectureOfCourse.data?.length > 0 ? (
+                      <>
+                        {lectureOfCourse.data?.map((i, index) => (
+                          <div className="bar_det" key={i._id}>
+                            <div>
+                              <div className="bar_det_border">
+                                <h2>{index + 1}</h2>
+                              </div>
+                              <h5>{i.title}</h5>
+                            </div>
+                            <Button
+                              onClick={() =>
+                                navigate(
+                                  `/course/detail/${courses.courses[0]?._id}`
+                                )
+                              }
+                            >
+                              Chi tiết
+                            </Button>
+                          </div>
+                        ))}
+                      </>
+                    ) : (
+                      <p>Chưa có khoá học nào</p>
+                    )}
                   </div>
-                  <Button>Chi tiết</Button>
-                </div>
-                <div className="bar_det">
-                  <div>
-                    <div className="bar_det_border">
-                      <h2>1</h2>
-                    </div>
-                    <h5>Bài học 3</h5>
+                  <div className="bar_det_benefit col-6">
+                    <h4>Lợi ích mang lại khi học tại đây</h4>
+                    <ul>
+                      <li>
+                        <IoCheckmarkDoneCircle color="#7F1416" size={16} />
+                        <p>It is a long established fact that</p>
+                      </li>
+                      <li>
+                        <IoCheckmarkDoneCircle color="#7F1416" size={16} />
+                        <p>It is a long established fact that</p>
+                      </li>
+                      <li>
+                        <IoCheckmarkDoneCircle color="#7F1416" size={16} />
+                        <p>It is a long established fact that</p>
+                      </li>
+                      <li>
+                        <IoCheckmarkDoneCircle color="#7F1416" size={16} />
+                        <p>It is a long established fact that</p>
+                      </li>
+                      <li>
+                        <IoCheckmarkDoneCircle color="#7F1416" size={16} />
+                        <p>It is a long established fact that</p>
+                      </li>
+                    </ul>
                   </div>
-                  <Button>Chi tiết</Button>
                 </div>
-                <div className="bar_det">
-                  <div>
-                    <div className="bar_det_border">
-                      <h2>1</h2>
-                    </div>
-                    <h5>Bài học 4</h5>
-                  </div>
-                  <Button>Chi tiết</Button>
-                </div>
-                <div className="bar_det">
-                  <div>
-                    <div className="bar_det_border">
-                      <h2>1</h2>
-                    </div>
-                    <h5>Bài học 5</h5>
-                  </div>
-                  <Button>Chi tiết</Button>
-                </div>
-              </div>
-              <div className="bar_det_benefit col-6">
-                <h4>Lợi ích mang lại</h4>
-                <ul>
-                  <li>
-                    <IoCheckmarkDoneCircle color="#7F1416" size={16} />
-                    <p>It is a long established fact that</p>
-                  </li>
-                  <li>
-                    <IoCheckmarkDoneCircle color="#7F1416" size={16} />
-                    <p>It is a long established fact that</p>
-                  </li>
-                  <li>
-                    <IoCheckmarkDoneCircle color="#7F1416" size={16} />
-                    <p>It is a long established fact that</p>
-                  </li>
-                  <li>
-                    <IoCheckmarkDoneCircle color="#7F1416" size={16} />
-                    <p>It is a long established fact that</p>
-                  </li>
-                  <li>
-                    <IoCheckmarkDoneCircle color="#7F1416" size={16} />
-                    <p>It is a long established fact that</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -547,7 +534,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <ContactFormIntro />
+      <ContactFormIntro id="1" />
     </div>
   );
 }

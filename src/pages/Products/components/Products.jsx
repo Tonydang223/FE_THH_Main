@@ -109,7 +109,6 @@ function Products({filter}) {
                         </p>
                         <a onClick={(e) => {
                           e.stopPropagation();
-                          console.log('vo line he')
                         }}>Liên Hệ</a>
                       </div>
                     </div>

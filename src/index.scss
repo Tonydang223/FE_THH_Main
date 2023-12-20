@@ -157,8 +157,9 @@ input:focus {
             text-transform: uppercase;
         }
         p:nth-child(2) {
-          color: #727272;
-          font-weight: 300;
+            color: #727272;
+            font-weight: 600;
+            text-transform: capitalize;
         }
         p:nth-child(3) {
             font-size: 14px;
@@ -420,8 +421,8 @@ input:focus {
         padding: 0 2rem;
     }
     .wrap_home .vids_wrap .row .col-4,
-    .wrap_home .sickWrap .list_sick .row .col-3,
-    .wrap_home .chisoWrap .list_chiso .row .col-3
+    .wrap_home .sickWrap .list_sick .row .col-4,
+    .wrap_home .chisoWrap .list_chiso .row .col-4
     {
         width: 100%;
     }
@@ -430,6 +431,10 @@ input:focus {
     }
     .wrapProduct .wrap_products .showlist_products .productAdvertizing .list_productRun .box_list_productRun div {
        padding-top: 0px;
+    }
+
+    .wrapBlogList {
+        padding: 0 2rem;
     }
         
 }

@@ -41,12 +41,10 @@ export default function DetailProduct() {
     skip: !id,
   });
 
+  if (id && oneProduct.isError) {
+    navigate("/404");
+  }
 
-  useEffect(() => {
-    if (id && oneProduct.isError) {
-      navigate("/product");
-    }
-  }, [id, navigate, oneProduct.isError]);
 
   const { data, isFetching } = useGetAllCommentsQuery("product");
 

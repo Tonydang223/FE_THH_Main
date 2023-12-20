@@ -7,7 +7,6 @@ import Contact from "./pages/Contact";
 import Courses from "./pages/Courses";
 import Intro from "./pages/Intro";
 import Login from "./pages/Auth/components/Login";
-import LogUp from "./pages/Auth/components/Logup";
 import MainBlog from "./pages/Blogs/MainBlog";
 import BlogDetail from "./pages/Blogs/BlogDetail";
 import MainProduct from "./pages/Products/MainProduct";
@@ -20,10 +19,14 @@ import RequiredRoute from "./components/RequiredRoute/RequiredRoute";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ModalFirm from "./components/Modals/ModalFirm";
-
+import { useGetPostsQuery } from "./pages/Blogs/post.service"
+import BlogLists from "./pages/Blogs/BlogLists"
+import { useGetCoursesQuery } from "./pages/Courses/course.service"
+import ForgotPassword from "./pages/Auth/ForgotPassword"
 
 function App() {
-
+  useGetPostsQuery();
+  useGetCoursesQuery();
   return (
     <>
       <Routes>
@@ -32,6 +35,7 @@ function App() {
           <Route path="blog" element={<Blogs />}>
             <Route index element={<MainBlog />} />
             <Route path="detail/:id" element={<BlogDetail />} />
+            <Route path="list" element={<BlogLists />} />
           </Route>
           <Route path="product" element={<Products />}>
             <Route index element={<MainProduct />} />
@@ -44,10 +48,10 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="intro" element={<Intro />} />
           <Route path="login" element={<Login />} />
-          <Route path="signUp" element={<LogUp />} />
           <Route element={<RequiredRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
+          <Route path="forgotPass" element={<ForgotPassword />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

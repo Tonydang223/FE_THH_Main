@@ -36,7 +36,7 @@
             }
 
             .content {
-                margin-top: 35px;
+                margin-top: 18px;
 
                 figure {
                     height: 550px;
@@ -142,7 +142,7 @@
                         }
 
                         h5 {
-                            font-size: 16px;
+                            font-size: 15px;
                             font-weight: 500;
                             margin-left: 15px;
                             overflow: hidden;
@@ -221,15 +221,14 @@
 
             h4 {
                 font-size: 19px;
-                line-height: 24px;
+                line-height: 30px;
                 font-weight: 500;
                 text-transform: uppercase;
                 overflow: hidden;
-                -webkit-line-clamp: 2;
+                -webkit-line-clamp: 1;
                 text-overflow: ellipsis;
                 display: -webkit-box;
                 border-bottom: 1px solid #333;
-                padding-bottom: 15px;
                 -webkit-box-orient: vertical;
             }
 
@@ -304,6 +303,7 @@
         .row {
             .col-4 {
                 margin-top: 10px;
+                cursor: pointer;
 
                 img {
                     height: 250px;
@@ -311,11 +311,11 @@
 
                 h4 {
                     font-size: 24px;
-                    line-height: 23px;
+                    line-height: 29px;
                     margin: 17px 0 7px 0;
                     font-weight: 700;
                     overflow: hidden;
-                    -webkit-line-clamp: 2;
+                    -webkit-line-clamp: 1;
                     text-overflow: ellipsis;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
@@ -357,6 +357,11 @@
                     font-size: 2.6rem;
                     line-height: 46px;
                     font-weight: 600;
+                    overflow: hidden;
+                    -webkit-line-clamp: 2;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
                 }
 
                 >p {
@@ -405,9 +410,10 @@
 
                 h4 {
                     font-size: 19px;
-                    margin: 11px 0;
+                    margin-top: 11px;
+                    line-height: 27px;
                     overflow: hidden;
-                    -webkit-line-clamp: 2;
+                    -webkit-line-clamp: 1;
                     text-overflow: ellipsis;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
@@ -536,6 +542,52 @@
             >div:nth-child(n+2) {
                 margin-top: 18px;
             }
+        }
+    }
+}
+
+.wrapBlogList {
+    padding: 0 7.5rem;
+    margin: 85px 0;
+    .title_home {
+        align-items: flex-start;
+    }
+    .productLists {
+        .card_blog {
+            padding: 0 15px;
+            margin-top: 12px;
+            cursor: pointer;
+            img {
+                border-radius: 5px;
+                height: 180px;
+                object-fit: cover;
+            }
+            .card_blog_content {
+                h5 {
+                   font-size: 18px;
+                   line-height: 24px;
+                   font-weight: 600;
+                   overflow: hidden;
+                   margin-bottom: 0;
+                   -webkit-line-clamp: 1;
+                   text-overflow: ellipsis;
+                   display: -webkit-box;
+                   -webkit-box-orient: vertical;
+                   margin-top: 12px;
+                }
+                p {
+                    font-size: 14px;
+                    font-weight: 200;
+                    line-height: 19px;
+                    overflow: hidden;
+                    margin-top: 3px;
+                    -webkit-line-clamp: 3;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                }
+            }
+
         }
     }
 }

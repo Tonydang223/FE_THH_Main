@@ -148,7 +148,7 @@
         }
         .list_sick {
             margin-top: 45px;
-            .row .col-3 div {
+            .row .col-4 div {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -318,6 +318,9 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        svg {
+                            cursor: pointer;
+                        }
                     }
     
                 }

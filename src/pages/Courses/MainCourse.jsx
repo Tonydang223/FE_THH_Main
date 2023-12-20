@@ -1,7 +1,6 @@
 import Banner from "../../components/customs/Banner";
 import "./Course.scss";
-import AnhMat from "../../assets/anhlammat.jpeg";
-import { Button } from "antd";
+import { Button, Skeleton } from "antd";
 import VectorUnder from "../../assets/vectorUnderline.png";
 import SupportImg from "../../assets/support234.png";
 import PhongKhamO from "../../assets/phongkham1.jpg";
@@ -13,13 +12,18 @@ import AnhBenhNhan from "../../assets/anhbenhnhan.jpg";
 import Slider from "react-slick";
 import { showGlobal } from "../../components/Modals/ModalFirm";
 import { FaCheck } from "react-icons/fa6";
-import IntroImg from "../../assets/introImg.png";
+import IntroImg from "../../assets/introImg.jpg";
 import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import ContactFormIntro from "../../components/customs/ContactForm";
 import {useNavigate} from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 export default function MainCourse() {
+
+  const { courses } = useSelector((state) => {
+    return state;
+  });
   const navigate = useNavigate();
   const settings = {
     dots: true,
@@ -106,63 +110,29 @@ export default function MainCourse() {
           </div>
         </div>
         <div className="row">
-          <div className="col-4">
-            <div className="box_course">
-              <div className="box_course_img">
-                <img src={AnhMat} />
+          {
+            courses.activeLoading ? (
+              <Skeleton />
+            ): (
+              courses.courses.slice(0, 3).map((i) => (
+                <div className="col-4" key={i._id}>
+                <div className="box_course">
+                  <div className="box_course_img">
+                    <img src={i.thumbnail.url} />
+                  </div>
+                  <div className="box_course_content">
+                    <h5>{i.title}</h5>
+                    <p>{i.instructor_by}</p>
+                    <p>
+                      {i.short_des}
+                    </p>
+                    <Button onClick={() => navigate(`/course/detail/${i._id}`)}>Chi tiết</Button>
+                  </div>
+                </div>
               </div>
-              <div className="box_course_content">
-                <h5>KHOÁ HỌC CHĂM SÓC DA</h5>
-                <p>Bác sĩ Hải</p>
-                <p>
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo.Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                  ea commodo. Exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo.
-                </p>
-                <Button onClick={() => navigate("/course/detail/1")}>Chi tiết</Button>
-              </div>
-            </div>
-          </div>
-          <div className="col-4">
-            <div className="box_course">
-              <div className="box_course_img">
-                <img src={AnhMat} />
-              </div>
-              <div className="box_course_content">
-                <h5>KHOÁ HỌC CHĂM SÓC DA</h5>
-                <p>Bác sĩ Hải</p>
-                <p>
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo.Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                  ea commodo. Exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo.
-                </p>
-                <Button onClick={() => navigate("/course/detail/1")}>Chi tiết</Button>
-              </div>
-            </div>
-          </div>
-          <div className="col-4">
-            <div className="box_course">
-              <div className="box_course_img">
-                <img src={AnhMat} />
-              </div>
-              <div className="box_course_content">
-                <h5>KHOÁ HỌC CHĂM SÓC DA</h5>
-                <p>Bác sĩ Hải</p>
-                <p>
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo.Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                  ea commodo. Exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo.
-                </p>
-                <Button onClick={() => navigate("/course/detail/1")}>Chi tiết</Button>
-              </div>
-            </div>
-          </div>
+              ))
+            )
+          }
         </div>
       </div>
       <div className="mainCourse2">
@@ -495,7 +465,7 @@ export default function MainCourse() {
           </div>
         </div>
       </div>
-      <ContactFormIntro />
+      <ContactFormIntro id="3"/>
     </div>
   );
 }

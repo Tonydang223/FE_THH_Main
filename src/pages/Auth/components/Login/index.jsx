@@ -63,11 +63,9 @@ export default function Login() {
   }, [token])
   
   const onFinish = async (values) => {
-    console.log("Received values of form: ", values);
     if(!changeForm) {
         await login(values).unwrap();
     } else {
-        console.log('sign Up')
         await logUp(values).unwrap();
     }
   };
@@ -171,7 +169,7 @@ export default function Login() {
                   </a>
                 </p>
                 <p>
-                  <a className="login-form-forgot" href="">
+                  <a className="login-form-forgot" onClick={() => navigate('/forgotPass')}>
                     Quên mật khẩu
                   </a>
                 </p>

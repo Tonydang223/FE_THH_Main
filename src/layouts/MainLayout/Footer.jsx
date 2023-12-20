@@ -1,4 +1,3 @@
-import React from "react";
 import Foot1Logo from "../../assets/foot_p1_logo.png";
 import Icon8Fb from "../../assets/icons8-facebook-96.png";
 import Icon8Zl from "../../assets/icons8-zalo-96.png";

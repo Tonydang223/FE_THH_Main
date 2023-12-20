@@ -91,7 +91,6 @@ export default function Header() {
   };
 
   const onClickMenuL = (e) => {
-    console.log("click ", e);
     navigate(e.key);
     if (open) {
       setOpen(false);

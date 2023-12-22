@@ -124,6 +124,10 @@
                             padding: 4px 30px;
                             border: none !important;
                             text-align: center;
+                            div {
+                                border: none !important;
+                                box-shadow: none !important;
+                            }
                         }
                     }
                     div:hover {

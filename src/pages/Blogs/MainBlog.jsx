@@ -3,7 +3,8 @@ import VectorUnder from "../../assets/vectorUnderline.png";
 import { FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Skeleton } from "antd";
+import { HiMiniChevronDoubleRight } from "react-icons/hi2";
+import { Skeleton, Button } from "antd";
 
 export default function MainBlog() {
   const blog = useSelector((state) => {
@@ -16,7 +17,7 @@ export default function MainBlog() {
   return (
     <div className="mainBlogWrap">
       {activeLoading ? (
-        <Skeleton />
+        <Skeleton style={{margin: '45px'}}/>
       ) : (
         <>
           <div className="mainBlog_1">
@@ -115,6 +116,14 @@ export default function MainBlog() {
                 </div>
               ))}
             </div>
+            <p style={{ textAlign: "center", margin: "25px 0" }}>
+            <Button className="btn-fade" onClick={() => navigate("/blog/list")}>
+              Xem Thêm
+              <span>
+                <HiMiniChevronDoubleRight />
+              </span>
+            </Button>
+          </p>
           </div>
           <div className="mainBlog_4">
             <div className="title_home">

@@ -58,7 +58,7 @@ export default function Login() {
     if(token) {
         setTimeout(() => {
             navigate('/');
-        }), 800
+        }, 300)
     }
   }, [token])
   

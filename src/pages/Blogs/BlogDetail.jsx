@@ -7,6 +7,7 @@ import "./Blog.scss";
 import { useGetOnePostQuery } from "./post.service";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { numberTest } from "../../untils/dataOut"
 
 export default function BlogDetail() {
 
@@ -14,17 +15,20 @@ export default function BlogDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const blog = useSelector((state) => {
-    return state.posts;
-  });
+  const blog = useSelector((state) => state.posts);
 
   const { data, isFetching, isError } = useGetOnePostQuery(id, {
     skip: !id,
   });
 
-  if (isError) {
+
+
+  if (isError && ![...numberTest.map(i=>i.id)].includes(id)) {
     navigate('/404');
   }
+
+
+
 
   return (
     <div className="blogDetWrap container">
@@ -39,11 +43,11 @@ export default function BlogDetail() {
               </div>
               <div>
                 <h5>Nhà thuốc Nam Y Đường</h5>
-                <p>{moment(data.createdAt).format("LL")}</p>
+                <p>{moment(data ? data.createdAt : new Date()).format("LL")}</p>
               </div>
             </div>
-            <h5 style={{margin: '25px 0 0 0', fontSize: '21px', fontWeight: '700'}}>{data.title}</h5>
-            <div className="content">{parse(data.desc)}</div>
+            <h5 style={{margin: '25px 0 0 0', fontSize: '21px', fontWeight: '700'}}>{data?.title || numberTest.filter(i => i.id === id)[0].title}</h5>
+            <div className="content">{(data && parse(data.desc)) || numberTest.filter(i => i.id === id)[0].content}</div>
             <div className="tags">
               <ul>
                 <li>Đông Y</li>

@@ -3,10 +3,8 @@ import { Button, Skeleton } from "antd";
 import "./home.scss";
 import VectorUnder from "../../assets/vectorUnderline.png";
 import { HiMiniChevronDoubleRight } from "react-icons/hi2";
-import AnhMat from "../../assets/anhlammat.jpeg";
 import BannerProduct from "../../assets/bannerProduct.png";
 import BannerHome from "../../assets/bannerhome.jpg";
-import ImageDa from "../../assets/anhbenhnhan.jpg";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { FaCirclePlay } from "react-icons/fa6";
 import Banner from "../../components/customs/Banner";
@@ -17,12 +15,12 @@ import { TikTokEmbed } from "react-social-media-embed";
 import ReactPlayer from "react-player";
 import { useSelector } from "react-redux";
 import { useGetLecturesOfCourseQuery } from "../Courses/course.service";
+import moment from "moment";
+import { numberTest } from "../../untils/dataOut"
 
 export default function Home() {
   const navigate = useNavigate();
-  const { posts, courses } = useSelector((state) => {
-    return state;
-  });
+  const { posts, courses } = useSelector((state) => state);
 
   const lectureOfCourse = useGetLecturesOfCourseQuery(courses.courses[0]?._id, {
     skip: !courses.courses[0]?._id,
@@ -37,32 +35,6 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const numberTest = [
-    {
-      title: "Chỉ số da mặt",
-      content:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
-      img: () => <img src={ImageDa} />,
-    },
-    {
-      title: "Chỉ số tim mạch",
-      content:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
-      img: () => <img src={ImageDa} />,
-    },
-    {
-      title: "Chỉ số huyết áp",
-      content:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
-      img: () => <img src={ImageDa} />,
-    },
-    {
-      title: "Tình trạng dạ dày",
-      content:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
-      img: () => <img src={ImageDa} />,
-    },
-  ];
 
   const showModalVid = (data) => {
     showGlobal({
@@ -124,9 +96,9 @@ export default function Home() {
           <div className="row">
             {numberTest.map((i) => (
               <>
-                <div className="col-3">
+                <div className="col-3" key={i.id} onClick={() =>  navigate(`/blog/detail/${i.id}`)}>
                   <div>
-                    {i.img()}
+                    <img src={i.img} />
                     <h5>{i.title}</h5>
                     <p>{i.content}</p>
                     <Button>Chi tiết</Button>
@@ -489,47 +461,31 @@ export default function Home() {
           <h3>Tin tức mới nhất tại đây</h3>
         </div>
         <div className="row">
-          <div className="col-4">
-            <div className="box_blog">
-              <img src={BannerProduct} />
-              <h4>
-                Lorem ipsum dolor sit amet, cons Lorem ipsum dolor sit amet,
-                cons cons cons
-              </h4>
-              <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo.
-              </p>
+          {posts?.posts.slice(0, 2).map((i) => (
+            <div
+              className="col-4"
+              key={i._id}
+              onClick={() => navigate(`/blog/detail/${i._id}`)}
+            >
+              <div className="box_blog">
+                <img src={i.thumbnail.url} />
+                <h4>{i.title}</h4>
+                <p>{i.short_des}</p>
+              </div>
             </div>
-          </div>
-          <div className="col-4">
-            <div className="box_blog">
-              <img src={BannerProduct} />
-              <h4>Lorem ipsum dolor sit amet, cons </h4>
-              <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo.
-              </p>
-            </div>
-          </div>
+          ))}
           <div className="col-4">
             <div>
-              <div className="box_blog_sm">
-                <h4>Lorem ipsum dolor sit amet, cons </h4>
-                <p>23 Jan 2022</p>
-              </div>
-              <div className="box_blog_sm">
-                <h4>Lorem ipsum dolor sit amet, cons </h4>
-                <p>23 Jan 2022</p>
-              </div>
-              <div className="box_blog_sm">
-                <h4>Lorem ipsum dolor sit amet, cons </h4>
-                <p>23 Jan 2022</p>
-              </div>
+              {posts?.posts.slice(0, 3).map((i) => (
+                <div
+                  className="box_blog_sm"
+                  key={i._id}
+                  onClick={() => navigate(`/blog/detail/${i._id}`)}
+                >
+                  <h4>{i.title} </h4>
+                  <p>{moment(i.createdAt).format("ll")}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

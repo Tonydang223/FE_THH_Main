@@ -21,7 +21,6 @@ import { FaUser, FaStoreAlt } from "react-icons/fa";
 import { MdPostAdd } from "react-icons/md";
 import { IoBookSharp } from "react-icons/io5";
 import styled from "@emotion/styled";
-import PropTypes from "prop-types";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import LogoAdmin from "../../assets/logoAdmin.png";
 import "./LayoutDashBoard.scss";
@@ -30,7 +29,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoExitOutline } from "react-icons/io5";
 import { useLogoutMutation } from "../../pages/Auth/auth.service";
 
-export default function LayoutDB(props) {
+export default function LayoutDB() {
   const navigate = useNavigate();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
@@ -40,7 +39,7 @@ export default function LayoutDB(props) {
   const [, setCurrentProfileSubMeu] = useState("subMenuProfile");
 
   const [logout, { isSuccess, isLoading }] = useLogoutMutation();
-  console.log(location.pathname.split("/")[2]);
+
   useEffect(() => {
     setCurrent(
       `${
@@ -221,7 +220,7 @@ export default function LayoutDB(props) {
             style={{ margin: "16px 0" }}
           />
           <div style={{ padding: 24, background: "#fff" }}>
-            {props?.children}
+            <Outlet />
           </div>
         </Content>
       </Layout>
@@ -229,6 +228,3 @@ export default function LayoutDB(props) {
   );
 }
 
-LayoutDB.propTypes = {
-  children: PropTypes.node,
-};

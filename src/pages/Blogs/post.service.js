@@ -8,6 +8,16 @@ export const postApis = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: ["Post"],
   endpoints: (builder) => ({
+    addPost: builder.mutation({
+      query: (body) => {
+        return {
+          url: "post/create",
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["Post"],
+    }),
     getPosts: builder.query({
       query: () => {
         return {
@@ -34,6 +44,49 @@ export const postApis = createApi({
         return response.data;
       },
     }),
+    editPost: builder.mutation({
+      query: (data) => {
+        return {
+          url: `post/edit/${data.id}`,
+          method: "POST",
+          body: data.body,
+        };
+      },
+      transformResponse: (response) => {
+        return response.data;
+      },
+      invalidatesTags: (result, error, arg) => [{ type: "Post", _id: arg._id }],
+    }),
+    deletePostRestore: builder.mutation({
+      query: (data) => {
+        return {
+          url: `post/del/restore`,
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["Post"],
+    }),
+    deletePostRestoreBack: builder.mutation({
+      query: (data) => {
+        return {
+          url: `post/del/restore/back`,
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["Post"],
+    }),
+    deletePost: builder.mutation({
+      query: (data) => {
+        return {
+          url: `post/del/selections`,
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["Post"],
+    }),
   }),
 });
 
@@ -42,4 +95,9 @@ export const postApis = createApi({
 export const {
   useGetPostsQuery,
   useGetOnePostQuery,
+  useAddPostMutation,
+  useDeletePostMutation,
+  useDeletePostRestoreBackMutation,
+  useDeletePostRestoreMutation,
+  useEditPostMutation,
 } = postApis;

@@ -11,6 +11,7 @@ import {
   Avatar,
   Typography,
 } from "antd";
+import { IoHome } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import LogoHeader from "../../assets/logoheader.png";
 import { IoMenu } from "react-icons/io5";
@@ -32,15 +33,41 @@ export default function Header() {
 
   const setCurSubMeuProfile = async (e) => {
     setCurrentProfileSubMeu(e.key);
-    if (e.key === "/profile") {
-      navigate(e.key);
-    } else if (e.key === "/logout") {
-        await logout().unwrap();
+    if (e.key === "/logout") {
+      await logout().unwrap();
+    } else {
+      navigate(`${e.key}`);
     }
     if (open) {
         setOpen(false);
     }
   };
+
+  const dropDownItem = (role) => {
+    let itemDefault = [
+        {
+          label: "Trang Cá Nhân",
+          key: "/profile",
+          icon: <CgProfile />,
+        },
+        {
+          label: "Đăng xuất",
+          key: "/logout",
+          icon: <IoExitOutline />,
+        },
+    ]
+    switch (role) {
+      case 1:
+        itemDefault.unshift(
+          {
+            label: "Trang quản lí",
+            key: "/dashboard",
+            icon: <IoHome />,
+          }
+        )
+    }
+    return itemDefault;
+  }
 
   useEffect(() => {
     setCurrent(`/${location.pathname.split("/")[1]}`);
@@ -152,18 +179,7 @@ export default function Header() {
           ) : (
             <Dropdown
               menu={{
-                items: [
-                  {
-                    label: "Trang Cá Nhân",
-                    key: "/profile",
-                    icon: <CgProfile />,
-                  },
-                  {
-                    label: "Đăng xuất",
-                    key: "/logout",
-                    icon: <IoExitOutline />,
-                  },
-                ],
+                items: dropDownItem(user?.role),
                 onClick: setCurSubMeuProfile,
               }}
             >
@@ -235,18 +251,7 @@ export default function Header() {
                 arrow={true}
                 overlayStyle={{ marginLeft: "15px" }}
                 menu={{
-                  items: [
-                    {
-                      label: "Trang Cá Nhân",
-                      key: "/profile",
-                      icon: <CgProfile />,
-                    },
-                    {
-                      label: "Đăng xuất",
-                      key: "/logout",
-                      icon: <IoExitOutline />,
-                    },
-                  ],
+                  items: dropDownItem(user?.role),
                   onClick: setCurSubMeuProfile,
                 }}
               >

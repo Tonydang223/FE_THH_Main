@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap');
 footer {
     background-color: #7F1416;
 
@@ -187,3 +189,187 @@ header.header_bottom {
         color: #222;
     }
 }
+
+.wrapMain {
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+    
+    li {
+        cursor: pointer;
+        list-style-type: none;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    a,
+    p,
+    div {
+        font-family: "Be Vietnam Pro", sans-serif;
+    }
+    
+    p {
+        font-size: 14px;
+        color: #222
+    }
+    
+    small {
+        font-size: 13px !important;
+    }
+    
+    a:hover {
+        color: #E47D7F;
+    }
+    
+    a {
+        color: #222;
+        font-size: 14px;
+        text-decoration: none;
+        font-weight: 300;
+    }
+    
+    p {
+        margin-bottom: 10px;
+    }
+    
+    img {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    // button {
+    //     width: 100%;
+    //     background-color: #7F1416 !important;
+    //     text-transform: uppercase;
+    // }
+    
+    // button:hover {
+    //     background-color: #b03638 !important;
+    // }
+    
+    input,
+    textarea,
+    .ant-input-affix-wrapper {
+        background-color: #d9d9d9 !important;
+    }
+    
+    .ant-form-item-explain-error {
+        font-size: 13px !important;
+    }
+    
+    .ant-form-item-extra {
+        font-size: 12px !important;
+        margin-top: 7px;
+    }
+    
+    .ant-tabs-tab-active {
+    
+        .ant-tabs-tab-btn {
+            color: #7F1416 !important;
+        }
+    }
+    
+    .ant-tabs-ink-bar {
+        background: #7F1416 !important;
+    }
+    
+    .ant-modal-close {
+        background-color: transparent !important;
+    }
+    
+    .ant-input-number-affix-wrapper {
+        width: 100% !important;
+    }
+    
+    .txt-remider {
+        color: #898989;
+        margin: 20px 0;
+        font-size: 14px;
+    }
+    
+    .title_home {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 30px;
+    
+        p {
+            margin-bottom: 0 !important;
+            font-size: 12px;
+            color: #404040;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+    
+        div {
+            margin-top: 0 !important;
+        }
+    
+        h3 {
+            font-size: 23px;
+            font-weight: 400;
+            color: #7F1416;
+            line-height: 32px;
+            text-transform: uppercase;
+        }
+    
+        h3,
+        p,
+        div {
+            margin: 4px 0;
+        }
+    }
+    
+    input:focus {
+        background: none !important;
+    }
+    .box_course {
+        .box_course_img img {
+            border-radius: 10px;
+            height: 228px;
+        }
+        .box_course_content {
+            margin-top: 18px;
+            p, h5 {
+                margin: 7px 0;
+            }
+            h5 {
+                font-weight: 600;
+                line-height: 30px;
+                text-transform: uppercase;
+            }
+            p:nth-child(2) {
+                color: #727272;
+                font-weight: 600;
+                text-transform: capitalize;
+            }
+            p:nth-child(3) {
+                font-size: 14px;
+                color: #222;
+                line-height: 20px;
+                font-weight: 300;
+                overflow: hidden;
+                -webkit-line-clamp: 3;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+            }
+            button {
+                color: #fff !important;
+                background-color: #7F1416;
+                height: auto;
+                padding: 4px 30px;
+                border: none !important;
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
+    }
+}
+

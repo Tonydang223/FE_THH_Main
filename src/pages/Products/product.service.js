@@ -17,18 +17,79 @@ export const productApis = createApi({
       transformResponse: (response) => {
         return response.data;
       },
+      providesTags: (result) =>
+      result
+        ? [...result.map(({ _id }) => ({ type: "Product", _id })), "Product"]
+        : ["Product"],
     }),
     getOneProduct: builder.query({
       query: (query) => {
         return {
           url: `products/${query}`,
-          credentials: "include",
         };
       },
       transformResponse: (response) => {
         return response.data;
       },
     }),
+    createProduct: builder.mutation({
+      query: (body) => {
+        return {
+          url: "products/parts",
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["Product"],
+    }),
+
+    editProduct: builder.mutation({
+      query: (data) => {
+        return {
+          url: `products/${data.id}`,
+          method: "POST",
+          body: data.body,
+          credentials: "include",
+        };
+      },
+      invalidatesTags: (result, error, arg) => [
+        { type: "Product", _id: arg._id },
+      ],
+    }),
+    deleteProductRestore: builder.mutation({
+      query: (data) => {
+        return {
+          url: `products/del/restore`,
+          method: "POST",
+          body: data,
+          credentials: "include",
+        };
+      },
+      invalidatesTags: ["Product"],
+    }),
+    deleteProductRestoreBack: builder.mutation({
+      query: (data) => {
+        return {
+          url: `products/del/restore/back`,
+          method: "POST",
+          body: data,
+          credentials: "include",
+        };
+      },
+      invalidatesTags: ["Product"],
+    }),
+    deleteProduct: builder.mutation({
+      query: (data) => {
+        return {
+          url: `products/del`,
+          method: "POST",
+          body: data,
+          credentials: "include",
+        };
+      },
+      invalidatesTags: ["Product"],
+    }),
+
     addComment: builder.mutation({
       query: (body) => {
         return {
@@ -54,8 +115,8 @@ export const productApis = createApi({
       query: (data) => {
         return {
           url: `comment/${data.id}`,
-          method: 'POST',
-          body: data.body
+          method: "POST",
+          body: data.body,
         };
       },
       transformResponse: (response) => {
@@ -67,7 +128,7 @@ export const productApis = createApi({
       query: (id) => {
         return {
           url: `comment/del/${id}`,
-          method: 'POST',
+          method: "POST",
         };
       },
       invalidatesTags: ["Comment"],
@@ -84,4 +145,9 @@ export const {
   useEditCommentMutation,
   useDelCommentMutation,
   useGetOneProductQuery,
+  useCreateProductMutation,
+  useEditProductMutation,
+  useDeleteProductMutation,
+  useDeleteProductRestoreBackMutation,
+  useDeleteProductRestoreMutation
 } = productApis;

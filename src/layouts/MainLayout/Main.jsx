@@ -5,10 +5,10 @@ import './MainLayout.scss';
 
 export default function Main() {
   return (
-    <>
+    <div className="wrapMain">
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </div>
   )
 }

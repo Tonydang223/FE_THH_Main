@@ -2,7 +2,8 @@ import { useCookies } from 'react-cookie'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { profileApi } from '../../pages/Profile/profile.service'
 import Loading from '../Loading/Loading';
-export default function RequiredRoute() {
+import PropTypes from "prop-types";
+export default function RequiredRoute({allowRoutes}) {
     const [cookies] = useCookies(["logged_in"]);
     const location = useLocation();
 
@@ -11,6 +12,8 @@ export default function RequiredRoute() {
         skip: false,
         refetchOnMountOrArgChange: true,
     });
+
+
     
     const loading = isLoading || isFetching;
 
@@ -23,9 +26,17 @@ export default function RequiredRoute() {
     
     
 
-    return (cookies.logged_in || !isFetching && data) ? (
+    return (cookies.logged_in || !isFetching && data) ? 
+    allowRoutes?.includes(data?.role) ? (
         <Outlet />
+    ) : (
+        <Navigate to="/404" state={{ from: location }} replace />
     ) : (
         <Navigate to="/login" state={{ from: location }} replace />
     )
 }
+
+RequiredRoute.propTypes = {
+    allowRoutes: PropTypes.array,
+};
+  

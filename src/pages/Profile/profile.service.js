@@ -54,7 +54,18 @@ export const profileApi = createApi({
         };
       },
     }),
+    getUsers: builder.query({
+      query: () => {
+        return {
+          url: "user/getAll",
+          credentials: "include",
+        };
+      },
+      transformResponse: (response) => {
+        return response.data;
+      }
+    }),
   }),
 });
 
-export const { useEditMeMutation, useGetMeQuery, useUpdatePassMutation } = profileApi;
+export const { useEditMeMutation, useGetMeQuery, useUpdatePassMutation, useGetUsersQuery } = profileApi;

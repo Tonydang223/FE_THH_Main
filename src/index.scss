@@ -267,6 +267,94 @@
     .wrap_home .chisoWrap .title_home  {
         padding: 0 30px;
     }
+
+    .wrapMainCourse .mainCourse1 .row .col-4 {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .wrapMainCourse .mainCourse1 {
+        padding: 0 2rem;
+    }
+    .wrapMainCourse .mainCourse2 .row .col-4 {
+        width: 100%;
+    }
+    .wrapMainCourse .mainCourse2 .title_home h3 {
+        text-align: center;
+    }
+    .wrapMainCourse .mainCourse2 .mainCourse2_wrapContent {
+        position: relative;
+        background: rgba(0,0,0,0.8);
+    }
+    .wrapMainCourse .mainCourse3 {
+        padding: 0 1rem;
+    }
+    .wrapMainCourse .mainCourse3 .slide-i {
+        margin: 0 15px;
+    }
+    .wrapMainCourse .mainCourse4 {
+        padding: 0 2rem;
+    }
+    .wrapMainCourse .mainCourse4 .intro_contain .row .col-8,
+    .wrapMainCourse .mainCourse4 .intro_contain .row .col-4 {
+        width: 100%
+    }
+    .wrapMainCourse .mainCourse4 .intro_contain .row .col-4 .upperAvatar {
+        padding:  25px 7rem;
+    }
+    .wrapMainCourse .mainCourse4 .intro_contain .row .col-4  {
+        margin-top: 25px;
+    }
+    .wrapMainCourse .mainCourse4 .intro_contain .row .col-8 .introContent2 .listintroWrap {
+        flex-direction: column !important;
+    }
+    .wrapMainCourse .mainCourse4 .intro_contain .row .col-8 .introContent2 .listintroWrap ul:nth-child(2){
+        margin-top: 14px;
+        margin-left: 0;
+    }
+    .wrapMainCourse .mainCourse5,
+    .wrapMainCourse .mainCourse6
+    {
+        padding: 0 2rem;
+    }
+
+    .wrapMainCourse .mainCourse5 .mainCourse5_content .row .col-8,
+    .wrapMainCourse .mainCourse5 .mainCourse5_content .row .col-4 {
+        width: 100%;
+    }
+    .wrapMainCourse .mainCourse5 .mainCourse5_content .row .col-8 {
+        padding-top: 20px
+    }
+    .wrapMainCourse .mainCourse6 .mainCourse6_content .row .col-8,
+    .wrapMainCourse .mainCourse6 .mainCourse6_content .row .col-4
+    {
+       width: 100% !important;
+       margin: 8px 0 !important;
+    }
+    .wrapMainCourse .mainCourse6 .mainCourse6_content .row {
+        margin: 0;
+    }
+    .wrapMainCourse .mainCourse2 .mainCourse2_wrapContent .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .mainBlogWrap .mainBlog_3,
+    .mainBlogWrap .mainBlog_4
+    {
+        margin: 0 2rem 85px 2rem;
+    }
+    .mainBlogWrap .mainBlog_3 .row .col-3{
+        width: 50%;
+    }
+    .mainBlogWrap .mainBlog_4 .col-6:nth-child(1) {
+        padding-right: 0rem;
+    }
+    .mainBlogWrap .mainBlog_4 .col-6 {
+        width: 100%;
+    }
+    .mainBlogWrap .mainBlog_4 .col-6:nth-child(2) {
+        margin-top: 15px;
+    }
+
         
 }
 
@@ -308,6 +396,24 @@
     .wrapProduct .list_cats_product .show_list_cats_product .card_cat_product {
         margin: 4px !important;
     }
+    .wrapMainCourse .mainCourse4 .intro_contain .row .col-4 .upperAvatar {
+        padding:  25px 3rem;
+    }
+    .mainBlogWrap .mainBlog_3 .row .col-3{
+        width: 100%;
+    }
+    .mainBlogWrap .mainBlog_3 .row .col-12 > div{
+        flex-direction: column;
+    }
+    .mainBlogWrap .mainBlog_3 .row .col-12 > div > div{
+        margin-top: 18px;
+        padding-left: 0; 
+    }
+    .mainBlogWrap .mainBlog_3 .row .col-12 > div > img,
+    .mainBlogWrap .mainBlog_3 .row .col-12 > div > div {
+        width: 100%;
+    }
+
 }
 
 @media (max-width: 576px) {
@@ -343,5 +449,11 @@
     }
     .mainBlogWrap .mainBlog_2 .row .col-4{
         width: 100%;
+    }
+    .wrapMainCourse .mainCourse4 .intro_contain .row .col-4 .upperAvatar > div img {
+        height: 270px;
+    }
+    .wrapMainCourse .mainCourse4 .intro_contain .row .col-4 .upperAvatar {
+        padding: 10px;
     }
 }

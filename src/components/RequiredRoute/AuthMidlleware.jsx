@@ -1,4 +1,3 @@
-import { useCookies } from 'react-cookie'
 import { profileApi } from '../../pages/Profile/profile.service'
 import Loading from '../Loading/Loading';
 import PropTypes from 'prop-types';
@@ -7,7 +6,6 @@ import { useEffect } from 'react'
 import { useRefreshMutation } from '../../pages/Auth/auth.service'
 
 export default function AuthMiddleware(props) {
-    const [cookies] = useCookies(["logged_in"]);
     const {token} = useSelector(state => state.user);
 
     const [refresh] = useRefreshMutation();
@@ -15,7 +13,7 @@ export default function AuthMiddleware(props) {
 
     // console.log(!token)
     const { isLoading } = profileApi.endpoints.getMe.useQuery(null, {
-        skip: !token || !cookies.logged_in,
+        skip: !token,
     });
 
     useEffect(() => {

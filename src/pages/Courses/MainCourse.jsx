@@ -32,6 +32,32 @@ export default function MainCourse() {
     arrows: false,
     slidesToShow: 3,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
   const settingSlide2 = {
     dots: true,
@@ -43,22 +69,22 @@ export default function MainCourse() {
   };
   const dataImgsSlide = [
     {
-      child: () => <img src={AnhBenhNhan} />,
+      child: AnhBenhNhan,
     },
     {
-      child: () => <img src={AnhBenhNhan} />,
+      child: AnhBenhNhan,
     },
     {
-      child: () => <img src={AnhBenhNhan} />,
+      child: AnhBenhNhan,
     },
     {
-      child: () => <img src={AnhBenhNhan} />,
+      child: AnhBenhNhan,
     },
     {
-      child: () => <img src={AnhBenhNhan} />,
+      child: AnhBenhNhan,
     },
     {
-      child: () => <img src={AnhBenhNhan} />,
+      child: AnhBenhNhan,
     },
   ];
   const clickEverySlide = (index) => {
@@ -81,7 +107,7 @@ export default function MainCourse() {
                   <>
                     <div key={index}>
                       <p>{img.text}</p>
-                      {img.child()}
+                      <img style={{width: '100%', height: '500px'}} src={img.child}/>
                     </div>
                   </>
                 );
@@ -209,7 +235,7 @@ export default function MainCourse() {
                   onClick={() => clickEverySlide(index)}
                   className="slide-i"
                 >
-                  {da.child()}
+                  <img style={{width: '100%', height: '250px'}} src={da.child}/>
                 </div>
               </>
             ))}

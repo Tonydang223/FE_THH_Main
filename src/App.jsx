@@ -37,7 +37,8 @@ import MainPost from "./pages/Admin/pages/Posts/MainPost";
 import AddPost from "./pages/Admin/pages/Posts/component/AddPost";
 import MainUser from "./pages/Admin/pages/User/MainUser";
 import ProfileAdmin from "./pages/Admin/components/Profile/Profile";
-
+import MineCourse from "./pages/Courses/MineCourse";
+import Learn from "./pages/Courses/Learn";
 
 function App() {
   useGetPostsQuery();
@@ -64,6 +65,10 @@ function App() {
           <Route path="course" element={<Courses />}>
             <Route index element={<MainCourse />} />
             <Route path="detail/:id" element={<DetailCourse />} />
+            <Route element={<RequiredRoute allowRoutes={[Roles.User]} />}>
+              <Route path="mine" element={<MineCourse />} />
+              <Route path="learn/:id/:code" element={<Learn />} />
+            </Route>
           </Route>
           <Route path="contact" element={<Contact />} />
           <Route path="intro" element={<Intro />} />

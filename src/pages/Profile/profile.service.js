@@ -7,6 +7,19 @@ export const profileApi = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: ["User"],
   endpoints: (builder) => ({
+    createUser: builder.mutation({
+      query: (body) => {
+        return {
+          url: "user/create",
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["User"],
+      transformResponse: (result) => {
+        return result.data;
+      },
+    }),
     getMe: builder.query({
       query: () => {
         return {
@@ -63,9 +76,25 @@ export const profileApi = createApi({
       },
       transformResponse: (response) => {
         return response.data;
-      }
+      },
+      providesTags: (result) =>
+      result
+        ? [...result.map(({ _id }) => ({ type: "User", _id })), "User"]
+        : ["User"],
     }),
+    changePassByAdmin: builder.mutation({
+      query: (body) => {
+        return {
+          url: `user/changePass/${body.id}`,
+          method: "POST",
+          body,
+        }
+      },
+      transformResponse: (result) => {
+        return result.data;
+      }
+    })
   }),
 });
 
-export const { useEditMeMutation, useGetMeQuery, useUpdatePassMutation, useGetUsersQuery } = profileApi;
+export const { useEditMeMutation, useGetMeQuery, useUpdatePassMutation, useGetUsersQuery, useCreateUserMutation, useChangePassByAdminMutation } = profileApi;

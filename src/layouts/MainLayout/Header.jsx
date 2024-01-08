@@ -12,6 +12,7 @@ import {
   Typography,
 } from "antd";
 import { IoHome } from "react-icons/io5";
+import { FaBookOpen } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import LogoHeader from "../../assets/logoheader.png";
 import { IoMenu } from "react-icons/io5";
@@ -64,7 +65,17 @@ export default function Header() {
             key: "/dashboard",
             icon: <IoHome />,
           }
-        )
+        );
+        break;
+      case 0:
+        itemDefault.unshift(
+          {
+            label: "Khoá học của tôi",
+            key: "/course/mine",
+            icon: <FaBookOpen />,
+          }
+        );
+        break;
     }
     return itemDefault;
   }

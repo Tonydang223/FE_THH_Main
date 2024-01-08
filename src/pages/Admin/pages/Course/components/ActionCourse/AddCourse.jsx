@@ -1,14 +1,21 @@
-import { Button, Form, Input, Upload, message, Select, InputNumber } from "antd";
+import {
+  Button,
+  Form,
+  Input,
+  Upload,
+  message,
+  Select,
+  InputNumber,
+} from "antd";
 import axios from "axios";
 import { PlusOutlined } from "@ant-design/icons";
 import ModalImage from "../../../../../../components/Modals/ModalImage";
 import { getBase64 } from "../../../../utils/readFile";
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from "react";
 import CkEdit from "../../../../components/CkEditor5/CkEdit";
-import { useAddCourseMutation } from "../../../../../Courses/course.service"
+import { useAddCourseMutation } from "../../../../../Courses/course.service";
 
 const FormItem = Form.Item;
-
 
 export default function AddCourse() {
   const [form] = Form.useForm();
@@ -16,10 +23,10 @@ export default function AddCourse() {
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
 
+
   const [valueAffSizeInput, setValueAffSizeInput] = useState("phút");
 
   const [createCourse, createCourseRes] = useAddCourseMutation();
-
 
   const uploadImage = async (options) => {
     const { onSuccess, onError, file, onProgress } = options;
@@ -82,43 +89,41 @@ export default function AddCourse() {
     if (editedValues.thumbnail?.length < 1) {
       editedValues = { ...editedValues, thumbnail: {} };
     } else {
-      if(editedValues.thumbnail[0].status === 'error') {
-        message.error("File img is fail! Try again")
+      if (editedValues.thumbnail[0].status === "error") {
+        message.error("File img is fail! Try again");
       } else {
         editedValues = {
-            ...editedValues,
-            thumbnail: {
-              uid: e.thumbnail[0].uid,
-              url: e.thumbnail[0].response || e.thumbnail[0].url,
-              name: e.thumbnail[0].name,
-              status: e.thumbnail[0].status,
-            },
-            amount_time: String(editedValues.amount_time) + " " + valueAffSizeInput,
+          ...editedValues,
+          thumbnail: {
+            uid: e.thumbnail[0].uid,
+            url: e.thumbnail[0].response || e.thumbnail[0].url,
+            name: e.thumbnail[0].name,
+            status: e.thumbnail[0].status,
+          },
+          amount_time:
+            String(editedValues.amount_time) + " " + valueAffSizeInput,
+        };
 
-          };
-
-          await createCourse(editedValues).unwrap();
+        await createCourse(editedValues).unwrap();
       }
-
     }
   };
 
   useEffect(() => {
     if (createCourseRes.isSuccess) {
-        message.success("The course was created successfully !");
-        form.resetFields();
+      message.success("The course was created successfully !");
+      form.resetFields();
+    }
+    if (createCourseRes.isError) {
+      if (Array.isArray(createCourseRes.error.data.error)) {
+        createCourseRes.error.data.error.forEach((el) =>
+          message.error(el.message)
+        );
+      } else {
+        message.error(createCourseRes.error.data.msg);
       }
-      if (createCourseRes.isError) {
-        if (Array.isArray(createCourseRes.error.data.error)) {
-            createCourseRes.error.data.error.forEach((el) =>
-            message.error(el.message)
-          );
-        } else {
-          message.error(createCourseRes.error.data.msg);
-        }
-      }
-  }, [createCourseRes.isLoading])
-
+    }
+  }, [createCourseRes.isLoading]);
 
   return (
     <>
@@ -146,7 +151,6 @@ export default function AddCourse() {
             listType="picture-card"
             beforeUpload={(file) => {
               if (file && file.size / 1024 / 1024 > 9) {
-
                 message.error("Dung lượng quá tải");
                 return Upload.LIST_IGNORE;
               } else {
@@ -157,16 +161,16 @@ export default function AddCourse() {
             accept={"image/*"}
             maxCount={1}
           >
-              <div>
-                <PlusOutlined />
-                <div
-                  style={{
-                    marginTop: 8,
-                  }}
-                >
-                  Upload
-                </div>
+            <div>
+              <PlusOutlined />
+              <div
+                style={{
+                  marginTop: 8,
+                }}
+              >
+                Upload
               </div>
+            </div>
           </Upload>
         </FormItem>
 
@@ -181,18 +185,14 @@ export default function AddCourse() {
           label="Tên khoá học"
           rules={[{ required: true, message: "Please enter your name !" }]}
         >
-          <Input
-            placeholder="Name of the course"
-          />
+          <Input placeholder="Name of the course" />
         </FormItem>
         <FormItem
           name={"instructor_by"}
           label="Tên giảng viên"
           rules={[{ required: true, message: "Please enter the instructor !" }]}
         >
-          <Input
-            placeholder="Instructor"
-          />
+          <Input placeholder="Instructor" />
         </FormItem>
         <FormItem
           name={"short_des"}
@@ -223,6 +223,19 @@ export default function AddCourse() {
             ]}
           />
         </Form.Item>
+        <FormItem
+          name={"code"}
+          label="Mã khoá học"
+          rules={[
+            { required: true, message: "Please enter the code !" },
+            {
+              pattern: new RegExp(/^[a-zA-Z0-9 ]+$/),
+              message: "Only numbers and letters",
+            },
+          ]}
+        >
+          <Input />
+        </FormItem>
         <FormItem
           name={"amount_time"}
           label="Thời lượng"

@@ -354,7 +354,19 @@
     .mainBlogWrap .mainBlog_4 .col-6:nth-child(2) {
         margin-top: 15px;
     }
-
+    .wrapLearningCourse,
+    .wrapCourseMineList
+    {
+        padding: 0 2rem;
+    }
+    .wrapLearningCourse .row .col-8,
+    .wrapLearningCourse .row .col-4
+    {
+        width: 100%;
+    }
+    .wrapLearningCourse .row .col-4 {
+        padding-top: 25px;
+    }
         
 }
 
@@ -414,6 +426,12 @@
         width: 100%;
     }
 
+    .wrapForgot .wrapLoginF_content {
+        width: 100%;
+        margin: 3rem 0;
+        padding: 0 20px;
+    }
+
 }
 
 @media (max-width: 576px) {
@@ -455,5 +473,8 @@
     }
     .wrapMainCourse .mainCourse4 .intro_contain .row .col-4 .upperAvatar {
         padding: 10px;
+    }
+    .wrapLearningCourse .row .col-8 .content .vidUper{
+        height: 250px;
     }
 }

@@ -55,8 +55,8 @@ export default function Lectures() {
     fmData.append("api_secret", import.meta.env.EN_CLOUD_API_SECRET_CLOUD);
 
     try {
-      if (file.size / 1024 / 1024 > 90) {
-        onError("Files not larger than 90mb");
+      if (file.size / 1024 / 1024 >= 100) {
+        onError("Files not larger than 100mb");
       } else {
         const res = await axios.post(url, fmData, config);
 
@@ -88,7 +88,7 @@ export default function Lectures() {
 
   const handleSubmit = async (e) => {
     let addDalles = [...e.items].concat(dataDel);
-    if (addDalles.length > 0 &&  !addDalles.find(i => i.videoIntro[0]?.status === 'error')) {
+    if (addDalles.length > 0 &&  !addDalles.find(i => i.videoIntro[0]?.status === 'error' || i.videoLecture[0]?.status === 'error')) {
       addDalles = addDalles.map((i) => {
         return {
           ...i,
@@ -98,6 +98,14 @@ export default function Lectures() {
                 url: i.videoIntro[0].response || i.videoIntro[0].url,
                 name: i.videoIntro[0].name,
                 status: i.videoIntro[0].status,
+              }
+            : {},
+          videoLecture: i.videoLecture && i.videoLecture.length > 0
+            ? {
+                uid: i.videoLecture[0].uid,
+                url: i.videoLecture[0].response || i.videoLecture[0].url,
+                name: i.videoLecture[0].name,
+                status: i.videoLecture[0].status,
               }
             : {},
           course: id,
@@ -193,19 +201,54 @@ export default function Lectures() {
                         {...field}
                         name={[field.name, "videoIntro"]}
                         valuePropName="fileList"
+                        label="Video giới thiệu"
                         getValueFromEvent={normFile}
                       >
                         <Upload
                           customRequest={uploadImage}
                           listType="picture-card"
                           beforeUpload={(file) => {
-                            if (file && file.size / 1024 / 1024 > 9) {
+                            if (file && file.size / 1024 / 1024 >= 100) {
                               message.error("Dung lượng quá tải");
                               return Upload.LIST_IGNORE;
                             } else {
                               return true;
                             }
                           }}
+                          onPreview={handlePreview}
+                          accept={"video/*"}
+                          maxCount={1}
+                        >
+                          <div>
+                            <PlusOutlined />
+                            <div
+                              style={{
+                                marginTop: 8,
+                              }}
+                            >
+                              Upload
+                            </div>
+                          </div>
+                        </Upload>
+                      </Form.Item>
+                      <Form.Item
+                        {...field}
+                        name={[field.name, "videoLecture"]}
+                        valuePropName="fileList"
+                        beforeUpload={(file) => {
+                          if (file && file.size / 1024 / 1024 >= 100) {
+                            message.error("Dung lượng quá tải");
+                            return Upload.LIST_IGNORE;
+                          } else {
+                            return true;
+                          }
+                        }}
+                        label="Video khoá học"
+                        getValueFromEvent={normFile}
+                      >
+                        <Upload
+                          customRequest={uploadImage}
+                          listType="picture-card"
                           onPreview={handlePreview}
                           accept={"video/*"}
                           maxCount={1}

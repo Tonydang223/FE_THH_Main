@@ -77,7 +77,6 @@ export default function Login() {
           <Form
             name="normal_login"
             className="login-form"
-            initialValues={{ remember: true }}
             onFinish={onFinish}
             form={form}
           >
@@ -163,11 +162,6 @@ export default function Login() {
 
             <Form.Item>
               <div className="d-flex justify-content-between flex-row">
-                <p>
-                  <a onClick={() => setChangeForm(!changeForm)}>
-                  {!changeForm ? "Đăng ký ngay" : "Đăng Nhập"}
-                  </a>
-                </p>
                 <p>
                   <a className="login-form-forgot" onClick={() => navigate('/forgotPass')}>
                     Quên mật khẩu

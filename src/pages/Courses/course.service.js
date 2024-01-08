@@ -42,6 +42,16 @@ export const courseApis = createApi({
         return response.data;
       },
     }),
+    getCodeCourse: builder.query({
+      query: (param) => {
+        return {
+          url: `course/code/${param.id}/${param.codeHex}`,
+        };
+      },
+      transformResponse: (response) => {
+        return response.data;
+      },
+    }),
     editCourse: builder.mutation({
       query: (data) => {
         return {
@@ -123,4 +133,5 @@ export const {
   useDeleteCourseMutation,
   useDeleteCourseRestoreMutation,
   useDeleteCourseRestoreBackMutation,
+  useGetCodeCourseQuery
 } = courseApis;

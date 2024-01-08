@@ -563,3 +563,153 @@
 
     }
 }
+
+.wrapCourseMineList {
+    padding: 0 7.5rem;
+    margin: 85px 0;
+    .title_home {
+        align-items: flex-start;
+    }
+    .productLists {
+        cursor: pointer;
+        .card_blog {
+            padding: 0 15px;
+            margin-top: 12px;
+            cursor: pointer;
+            img {
+                border-radius: 5px;
+                height: 180px;
+                object-fit: cover;
+            }
+            .card_blog_content {
+                h5 {
+                   font-size: 18px;
+                   line-height: 24px;
+                   font-weight: 600;
+                   overflow: hidden;
+                   margin-bottom: 0;
+                   -webkit-line-clamp: 1;
+                   text-overflow: ellipsis;
+                   display: -webkit-box;
+                   -webkit-box-orient: vertical;
+                   margin-top: 12px;
+                }
+                p {
+                    font-size: 14px;
+                    font-weight: 200;
+                    line-height: 19px;
+                    overflow: hidden;
+                    margin-top: 3px;
+                    -webkit-line-clamp: 3;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                }
+            }
+
+        }
+    }
+}
+
+.wrapLearningCourse {
+    padding: 0 7.5rem;
+    margin: 85px 0;
+    .title_home {
+        align-items: flex-start;
+    }
+    .col-8 {
+        .content {
+            .vidUper {
+                height: 450px;
+            }
+            > h4 {
+                font-size: 21px;
+                margin-bottom: 20px;
+            }
+            .desc {
+                margin-top: 30px;
+                > h4 {
+                    margin-top: 20px;
+                    font-weight: 700;
+                    font-size: 21px;
+                    color: #333;
+                    text-transform: uppercase;
+                }
+                > div {
+                    h1,
+                    h2,
+                    h3 {
+                        font-size: 27px;
+                        font-weight: 800;
+                    }
+    
+                    h4,
+                    h5,
+                    h6 {
+                        font-size: 21px;
+                        font-weight: 600;
+                    }
+    
+                    ul {
+                        margin: 12px 0;
+                        margin-left: 45px;
+                    }
+    
+                    ul li {
+                        list-style-type: disc;
+                    }
+    
+                    ul li span {
+                        font-weight: 200;
+                        font-size: 15px;
+                    }
+    
+                    p {
+                        font-size: 15px;
+                        font-weight: 200;
+                        line-height: 19px;
+                    }
+    
+                    figure img {
+                        width: 70%;
+                        height: 350px;
+                    }
+                }
+            }
+        }
+    }
+    .col-4 {
+        .list_lectures {
+            border: 0.8px solid #7F1416;
+            border-radius: 5px;
+            padding: 15px 20px;
+            max-height: 700px;
+            scroll-behavior: smooth;
+            overflow-y: scroll;
+            .item-lec {
+                display: flex;
+                cursor: pointer;
+                padding: 12px 0;
+                flex-direction: row;
+                align-items: center;
+                p {
+                    margin-left: 15px;
+                    margin-bottom: 0;
+                    font-size: 15px;
+                    font-weight: 300;
+                    -webkit-line-clamp: 1;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    white-space: normal;
+                    word-break: break-word;
+                    overflow: hidden;
+                    white-space: normal;
+                }
+            }
+            .item-lec:not(:last-child) {
+                border-bottom: 1px solid rgba(128, 20, 22, 0.3);
+            }
+        }
+    }
+}

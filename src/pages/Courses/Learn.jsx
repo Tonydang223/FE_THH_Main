@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  useGetCodeCourseQuery,
   useGetLecturesOfCourseQuery,
   useGetOneCourseQuery,
 } from "./course.service";
@@ -12,7 +11,7 @@ import parse from "html-react-parser";
 import { FaCirclePlay } from "react-icons/fa6";
 
 const Learn = () => {
-  const { id, code } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [activeId, setActiveId] = useState(0);
 
@@ -24,22 +23,12 @@ const Learn = () => {
     skip: !id,
   });
 
-  const codeRes = useGetCodeCourseQuery(
-    {
-      id,
-      codeHex: code,
-    },
-    {
-      skip: !id || !code,
-    }
-  );
-
   useEffect(() => {
-    if ((id && isError) || codeRes.isError) {
+    if ((id && isError)) {
       navigate(-1);
       message.error("Opps not access this page!");
     }
-  }, [codeRes.isError, id, isError, navigate]);
+  }, [id, isError, navigate]);
 
   return (
     <div className="wrapLearningCourse">

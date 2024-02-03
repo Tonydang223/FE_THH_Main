@@ -1,8 +1,9 @@
 import VectorUnder from "../../assets/vectorUnderline.png";
-import { List, Skeleton, Button, Form, Input } from "antd";
+import { List, Skeleton, Button, Form, Input, message } from "antd";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { closeGlobal, showGlobal } from "../../components/Modals/ModalFirm";
+import { useConfirmCodeMutation } from "./course.service";
 
 const MineCourse = () => {
   const navigate = useNavigate();
@@ -10,13 +11,23 @@ const MineCourse = () => {
   const coursesList = useSelector((state) => state.courses);
   const { user } = useSelector((state) => state.user);
 
+  const [confirmCode] = useConfirmCodeMutation();
+
   const { activeLoading, courses } = coursesList;
 
-  const onFinishCode = (v, p) => {
-        closeGlobal();
+  const onFinishCode = async (v, p) => {
+    closeGlobal();
+
+    await confirmCode({ id: p?.idCourse, code: v.code })
+      .unwrap()
+      .then(() => {
         setTimeout(() => {
-            navigate(`/course/learn/${p?.idCourse}/${v.code}`)
-        }, 200)
+          navigate(`/course/learn/${p?.idCourse}`);
+        }, 200);
+      })
+      .catch((e) => {
+        message.error(e?.data?.msg);
+      });
   };
 
   const FormConfirmCode = (props) => (
@@ -51,7 +62,7 @@ const MineCourse = () => {
 
   const showModalConfirmCode = (id) => {
     showGlobal({
-      body: <FormConfirmCode idCourse={id}/>,
+      body: <FormConfirmCode idCourse={id} />,
 
       footer: [
         <Button key="back" type="primary" danger onClick={closeGlobal}>
@@ -102,7 +113,18 @@ const MineCourse = () => {
             }}
             dataSource={courses.filter((v) => v?.students.includes(user._id))}
             renderItem={(item) => (
-              <div className="card_blog" onClick={() => showModalConfirmCode(item._id)}>
+              <div
+                className="card_blog"
+                onClick={() => {
+                  if (item?.confirmer.includes(user._id)) {
+                    setTimeout(() => {
+                      navigate(`/course/learn/${item._id}`);
+                    }, 200);
+                  } else {
+                    showModalConfirmCode(item._id);
+                  }
+                }}
+              >
                 <div>
                   <img src={item.thumbnail.url} />
                 </div>
@@ -117,7 +139,15 @@ const MineCourse = () => {
                       background: "#7F1416",
                       color: "#fff",
                     }}
-                    onClick={() => showModalConfirmCode(item._id)}
+                    onClick={() => {
+                      if (item?.confirmer.includes(user._id)) {
+                        setTimeout(() => {
+                          navigate(`/course/learn/${item._id}`);
+                        }, 200);
+                      } else {
+                        showModalConfirmCode(item._id);
+                      }
+                    }}
                   >
                     Vào Học
                   </Button>

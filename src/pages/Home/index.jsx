@@ -2,9 +2,10 @@ import Slider from "react-slick";
 import { Button, Skeleton } from "antd";
 import "./home.scss";
 import VectorUnder from "../../assets/vectorUnderline.png";
-import { HiMiniChevronDoubleRight } from "react-icons/hi2";
+// import { HiMiniChevronDoubleRight } from "react-icons/hi2";
 import BannerProduct from "../../assets/bannerProduct.png";
 import BannerHome from "../../assets/bannerhome.jpg";
+import ImageSpace from "../../assets/phongkham1.jpg";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { FaCirclePlay } from "react-icons/fa6";
 import Banner from "../../components/customs/Banner";
@@ -16,7 +17,7 @@ import ReactPlayer from "react-player";
 import { useSelector } from "react-redux";
 import { useGetLecturesOfCourseQuery } from "../Courses/course.service";
 import moment from "moment";
-import { numberTest } from "../../untils/dataOut"
+import { numberTest, sicksData } from "../../untils/dataOut";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -96,14 +97,19 @@ export default function Home() {
           <div className="row">
             {numberTest.map((i) => (
               <>
-                <div className="col-3" key={i.id} onClick={() =>  navigate(`/blog/detail/${i.id}`)}>
+                <a
+                  className="col-3"
+                  href={i.src}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <div>
                     <img src={i.img} />
                     <h5>{i.title}</h5>
                     <p>{i.content}</p>
                     <Button>Chi tiết</Button>
                   </div>
-                </div>
+                </a>
               </>
             ))}
           </div>
@@ -123,41 +129,34 @@ export default function Home() {
         </div>
         <div className="list_sick">
           <div className="row">
-            {posts.activeLoading ? (
-              <Skeleton />
-            ) : (
+            {sicksData.map((t) => (
               <>
-                {posts?.posts
-                  .filter((p) => p.categories === "health")
-                  .slice(0, 3)
-                  .map((t) => (
-                    <>
-                      <div
-                        style={{ cursor: "pointer" }}
-                        className="col-4"
-                        key={t._id}
-                        onClick={() => navigate(`/blog/detail/${t._id}`)}
-                      >
-                        <div>
-                          <img src={t.thumbnail.url} />
-                          <h5>{t.title}</h5>
-                          <p>{t.short_des}</p>
-                        </div>
-                      </div>
-                    </>
-                  ))}
+                <a
+                  style={{ cursor: "pointer" }}
+                  className="col-4"
+                  key={t._id}
+                  href={t.src}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div>
+                    <img src={t.img} />
+                    <h5>{t.title}</h5>
+                    <p>{t.content}</p>
+                  </div>
+                </a>
               </>
-            )}
+            ))}
           </div>
 
-          <p style={{ textAlign: "center", margin: "25px 0" }}>
+          {/* <p style={{ textAlign: "center", margin: "25px 0" }}>
             <Button className="btn-fade" onClick={() => navigate("/blog/list")}>
               Xem Thêm
               <span>
                 <HiMiniChevronDoubleRight />
               </span>
             </Button>
-          </p>
+          </p> */}
         </div>
       </div>
       <div className="courseWrap_demo">
@@ -170,7 +169,7 @@ export default function Home() {
               className="vectorUnder"
             />
           </div>
-          <h3>Khoá học gia liễu</h3>
+          <h3>Khoá học da liễu</h3>
         </div>
         <div className="row">
           <div className="col-4">
@@ -275,6 +274,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Banner />
       <div className="vids_wrap">
         <div className="row">
           <div className="col-4">
@@ -329,6 +329,30 @@ export default function Home() {
               distribution of letters, as opposed to using Content here, content
               here, making it look like readable English.
             </p>
+          </div>
+        </div>
+        <div className="wrap_imgsSpace">
+          <div className="row">
+            <div className="col-3">
+              <img src={ImageSpace} />
+            </div>
+            <div className="col-3">
+              <img src={ImageSpace} />
+            </div>
+            <div className="col-3">
+              <img src={ImageSpace} />
+            </div>
+            <div className="col-3">
+              <img src={ImageSpace} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <img src={ImageSpace} />
+            </div>
+            <div className="col-6">
+              <img src={ImageSpace} />
+            </div>
           </div>
         </div>
         <div className="row">
@@ -447,7 +471,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Banner />
       <div className="blog_wrap">
         <div className="title_home">
           <p>Blog New</p>

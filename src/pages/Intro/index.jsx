@@ -8,6 +8,8 @@ import IntroImg from "../../assets/introImg.jpg";
 import { FaFacebook } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import ContactFormIntro from "../../components/customs/ContactForm";
+import { AiFillRightCircle } from "react-icons/ai";
+import ImageSpace from "../../assets/phongkham1.jpg";
 
 export default function Intro() {
   return (
@@ -233,7 +235,7 @@ export default function Intro() {
               </p>
             </div>
           </li>
-          <li>
+          {/* <li>
             <div>
               <img src={VictimImg} />
               <h5>Nguyễn Văn Đạt</h5>
@@ -258,10 +260,92 @@ export default function Intro() {
                 nisi ut aliquip ex ea commodo consequat.
               </p>
             </div>
-          </li>
+          </li> */}
         </ul>
       </div>
-      <ContactFormIntro id="2"/>
+      <div className="roadsIntro">
+        <div className="title_home">
+          <h3>Chặng đường phát triển</h3>
+          <div>
+            <img
+              src={VectorUnder}
+              alt="vector under thh"
+              className="vectorUnder"
+            />
+          </div>
+        </div>
+        <div className="road_contents">
+          <p>
+            Trải qua 10 năm, bên cạnh những giải thưởng cao quý, Trung tâm Thuốc
+            dân tộc đã đạt được nhiều dấu ấn dấu ấn đáng ghi nhớ. Đến nay, Thuốc
+            dân tộc đã trở thành một trong những cơ sở khám chữa bệnh bằng Đông
+            y đông khách nhất trên cả nước. <br />
+            Điều này khẳng định một điều Trung tâm đã ghi dấu ấn và trở thành 1
+            điểm đến không thể bỏ qua khi khách hàng có nhu cầu điều trị bằng
+            Đông y. <br />
+            Bên cạnh đó, cùng với sứ mệnh chăm sóc, bảo vệ sức khỏe cộng đồng,
+            Trung tâm cũng đã nhiều lần tổ chức các buổi thiện nguyện, khám chữa
+            bệnh miễn phí cho người dân cả nước. Những hành động đẹp này đã để
+            lại những hình ảnh đẹp nhất cho Thuốc dân tộc trong suốt hơn 10 năm
+            qua.
+            <br /> <br />
+            Nhờ những đóng góp ấy mà Trung tâm Thuốc dân tộc được nhiều đơn vị
+            truyền thông uy tín như đài truyền hình VTV, VTC mời tham dự, trao
+            đổi trong các chương trình về sức khỏe:
+          </p>
+          <ul>
+            <li>
+              <a target="_blank" rel="noreferrer">
+                <span>
+                  <AiFillRightCircle size={17} />
+                </span>
+                VTV2 - Vì sức khỏe Người việt: Chữa bệnh dạ dày bằng Đông y
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noreferrer">
+                <span>
+                  <AiFillRightCircle size={17} />
+                </span>
+                VTV2 - Vì sức khỏe Người việt: Chữa bệnh dạ dày bằng Đông y
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noreferrer">
+                <span>
+                  <AiFillRightCircle size={17} />
+                </span>
+                VTV2 - Vì sức khỏe Người việt: Chữa bệnh dạ dày bằng Đông y
+              </a>
+            </li>
+          </ul>
+          <div className="wrap_imgsSpace">
+            <div className="row">
+              <div className="col-3">
+                <img src={ImageSpace} />
+              </div>
+              <div className="col-3">
+                <img src={ImageSpace} />
+              </div>
+              <div className="col-3">
+                <img src={ImageSpace} />
+              </div>
+              <div className="col-3">
+                <img src={ImageSpace} />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6">
+                <img src={ImageSpace} />
+              </div>
+              <div className="col-6">
+                <img src={ImageSpace} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ContactFormIntro id="2" />
     </div>
   );
 }

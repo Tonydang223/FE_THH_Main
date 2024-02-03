@@ -2,6 +2,7 @@
     .intro_contain {
         padding: 0 7.5rem;
         margin: 85px 0;
+
         .row {
             .col-8 {
                 h6 {
@@ -10,24 +11,29 @@
                     font-size: 15px;
                     text-transform: uppercase;
                 }
+
                 p {
                     font-size: 15px;
                     font-weight: 300;
                     text-align: justify;
                 }
+
                 .introContent2 {
 
                     .listintroWrap {
                         ul:nth-child(2) {
                             margin-left: 23px;
                         }
-                        ul li span{
+
+                        ul li span {
                             padding-right: 7px;
                         }
-                        ul li span svg{
+
+                        ul li span svg {
                             color: #046937;
-                             margin-bottom: 2px;
+                            margin-bottom: 2px;
                         }
+
                         ul li {
                             font-size: 14px;
                             font-weight: 200;
@@ -36,24 +42,29 @@
                     }
                 }
             }
+
             .col-4 {
                 .upperAvatar {
                     padding: 25px;
                     border-top: 5px solid #046937;
                     border-bottom: 5px solid #046937;
+
                     >div {
                         padding: 30px 35px;
                         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
                         text-align: center !important;
+
                         img {
                             height: 320px;
                         }
-                        h5{
+
+                        h5 {
                             margin: 16px 0 0 0;
                             font-weight: 600;
                             color: #000;
-                            
+
                         }
+
                         p {
                             margin-top: 5px;
                             font-size: 14px;
@@ -61,11 +72,14 @@
                             color: #7F1416;
                             margin-bottom: 0;
                         }
+
                         ul {
                             display: flex;
                             justify-content: center;
+
                             li {
                                 margin: 5px 7px;
+
                                 svg {
                                     color: #C0C0C0;
                                 }
@@ -73,9 +87,11 @@
                         }
                     }
                 }
+
                 .downAvatarInfo {
                     padding: 25px;
                     border-bottom: 5px solid #046937;
+
                     h4 {
                         font-weight: 600;
                         font-size: 21px;
@@ -83,20 +99,25 @@
                         margin-bottom: 15px;
 
                     }
+
                     ul {
                         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
                         padding: 25px 18px 18px 18px;
+
                         li:nth-child(2) {
                             margin-top: 15px;
                         }
+
                         li:nth-child(-n+1) {
                             border-bottom: 1px solid #e6e6e6;
                         }
+
                         li {
                             h5 {
                                 font-size: 17px;
                                 font-weight: 600;
                             }
+
                             p {
                                 font-weight: 200;
                                 font-size: 14px;
@@ -107,35 +128,42 @@
                 }
             }
         }
+
         .title_home {
             align-items: flex-start;
             margin-bottom: 10px;
             margin-top: 18px;
         }
-        > p {
+
+        >p {
             font-weight: 300;
             text-align: justify;
             font-size: 15px;
         }
     }
+
     .bannerIntro {
         position: relative;
+
         img {
             position: relative;
             object-fit: cover;
-            height: 700px;
+            height: 530px;
         }
+
         .content_banner_intro {
             position: absolute;
             top: 38%;
             left: 40px;
             z-index: 999;
+
             p {
                 color: rgba(0, 0, 0, 0.8);
                 font-size: 15px;
                 font-weight: 300;
                 max-width: 700px;
             }
+
             h1 {
                 font-size: 40px;
                 font-weight: 700;
@@ -155,6 +183,7 @@
         }
 
     }
+
     .bannerIntro::before {
         content: '';
         top: 0;
@@ -162,49 +191,64 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        background-color: rgba(226,212,185, 0.5);
+        background-color: rgba(226, 212, 185, 0.5);
         z-index: 998;
     }
+
     .bannerLife {
         .title_home {
             align-items: flex-start;
             padding: 0 7.5rem;
         }
+
         margin-bottom: 85px;
     }
+
     .respondVictim {
         padding: 0 7.5rem;
-        margin-bottom: 85px;
+        margin-bottom: 55px;
+
         .title_home {
             align-items: flex-end;
         }
+
         ul {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+
             li {
                 flex: 0 0 auto;
-                width: 25%;
+                width: 42%;
+                cursor:initial;
+
                 div {
                     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
                     border-radius: 5px;
                     padding: 20px 25px;
                     margin: 20px;
+
                     img {
                         border-radius: 10px;
                     }
-                    h5{
-                        margin: 12px 0 0 0;
+
+                    h5 {
+                        margin: 17px 0 0 0;
                         font-size: 17px;
                         font-weight: 600;
                     }
-                    p{
+
+                    p {
                         margin: 5px 0;
                     }
+
                     p:nth-child(3) {
                         font-size: 14px;
                         font-weight: 500;
                         color: #777777;
                     }
+
                     p:nth-child(4) {
                         font-size: 15px;
                         font-weight: 200;
@@ -219,14 +263,83 @@
                 }
 
             }
-            li:nth-child(odd) {
-                margin-bottom: 95px;
-      
+
+            // li:nth-child(odd) {
+            //     margin-bottom: 95px;
+
+            // }
+            // li:nth-child(even) {
+            //     margin-top: 95px;
+
+            // }
+        }
+    }
+
+    .roadsIntro {
+        padding: 0 7.5rem;
+
+        .title_home {
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .road_contents {
+            p {
+                font-size: 15px;
+                font-weight: 300;
+                padding-right: 120px;
+                text-align: justify;
             }
-            li:nth-child(even) {
-                margin-top: 95px;
-      
+            ul {
+                padding-left: 10px;
+            }
+            ul li {
+                list-style-type: none;              
+                font-size: 24px;
+            }
+            ul li:nth-child(n + 2) {
+                margin-top: 10px;
+            }
+            ul li:hover {
+                color: #b01b1d;
+                transition: all 0.4s ease;
+                -webkit-transition: all 0.4s ease;
+                -o-transition: all 0.4s ease;
+            }
+            ul li a{
+
+                font-weight: 500;
+                font-size: 16px;
+                span {
+                    padding: 0px 7px 0px 5px;
+                    svg {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+            .wrap_imgsSpace {
+                margin-top: 23px;
+                .row {
+                    img {
+                        border-radius: 5px;
+                    }
+                    .col-3 {
+                        height: 100%;
+                        padding: 0
+                    }
+                    .col-3 {
+                        padding-left: 15px;
+                    }
+                    .col-6 {
+                        padding: 0;
+                    }
+                    .col-6 {
+                        padding-left: 15px;
+                        padding-top: 15px;
+                    }
+                }
             }
         }
+
+
     }
 }

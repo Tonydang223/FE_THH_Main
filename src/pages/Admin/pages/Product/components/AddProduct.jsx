@@ -20,6 +20,7 @@ import {
   useGetOneProductQuery,
 } from "../../../../Products/product.service";
 import { useParams, useNavigate } from "react-router-dom";
+import { EN_CLOUD_NAME, EN_CLOUD_API_KEY_CLOUD, EN_CLOUD_API_SECRET_CLOUD } from "../../../../../untils/constant"
 const FormItem = Form.Item;
 
 
@@ -61,7 +62,7 @@ export default function AddProduct() {
     const fmData = new FormData();
     const url =
       "https://api.cloudinary.com/v1_1/" +
-      import.meta.env.EN_CLOUD_NAME +
+      EN_CLOUD_NAME +
       "/auto/upload";
     const config = {
       headers: { "content-type": "multipart/form-data" },
@@ -71,8 +72,8 @@ export default function AddProduct() {
     };
     fmData.append("file", file);
     fmData.append("upload_preset", "products");
-    fmData.append("api_key", import.meta.env.EN_CLOUD_API_KEY_CLOUD);
-    fmData.append("api_secret", import.meta.env.EN_CLOUD_API_SECRET_CLOUD);
+    fmData.append("api_key", EN_CLOUD_API_KEY_CLOUD);
+    fmData.append("api_secret", EN_CLOUD_API_SECRET_CLOUD);
 
     try {
       if (file.size / 1024 / 1024 > 9) {

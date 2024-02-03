@@ -6,9 +6,11 @@ import { SlPhone } from "react-icons/sl";
 import { CiMail } from "react-icons/ci";
 import { CiLocationOn } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
-
+import { FaCalendar } from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
 
 export default function Footer() {
+  const navigate = useNavigate();
   return (
     <footer>
       <div className="wrapInside_foot">
@@ -111,6 +113,23 @@ export default function Footer() {
             This template is made with <span><FaHeart/></span> by{" "}
             <span>TranHoangHai.com</span>{" "}
           </p>
+        </div>
+      </div>
+      <div className="footerBar">
+        <div className="line"></div>
+        <div className="wrap_content">
+          <p>Liên hệ trực tiếp: +(84) 774 556 765 - +(84) 774 556 765</p>
+          <div className="btn" onClick={() => {
+            navigate("/contact")
+            window.scrollTo({top: 0, behavior: "smooth"})
+          }}>
+            <p>
+              <span>
+                <FaCalendar size={18} color="#fff" />
+              </span>
+              Đặt Lịch
+            </p>
+          </div>
         </div>
       </div>
     </footer>

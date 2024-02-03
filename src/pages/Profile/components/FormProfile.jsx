@@ -8,6 +8,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { useEditMeMutation } from "../profile.service"
 import ModalImage from "../../../components/Modals/ModalImage"
 import { getBase64 } from "../../../untils/readFile"
+import { EN_CLOUD_NAME, EN_CLOUD_API_KEY_CLOUD, EN_CLOUD_API_SECRET_CLOUD } from "../../../untils/constant"
 
 export default function FormProfile() {
   const { user } = useSelector((state) => state.user);
@@ -36,7 +37,7 @@ export default function FormProfile() {
     const fmData = new FormData();
     const url =
       "https://api.cloudinary.com/v1_1/" +
-      import.meta.env.EN_CLOUD_NAME +
+      EN_CLOUD_NAME +
       "/auto/upload";
     const config = {
       headers: { "content-type": "multipart/form-data" },
@@ -46,8 +47,8 @@ export default function FormProfile() {
     };
     fmData.append("file", file);
     fmData.append("upload_preset", "avatar");
-    fmData.append("api_key", import.meta.env.EN_CLOUD_API_KEY_CLOUD);
-    fmData.append("api_secret", import.meta.env.EN_CLOUD_API_SECRET_CLOUD);
+    fmData.append("api_key", EN_CLOUD_API_KEY_CLOUD);
+    fmData.append("api_secret", EN_CLOUD_API_SECRET_CLOUD);
 
     try {
       if (file.size / 1024 / 1024 > 1.5) {

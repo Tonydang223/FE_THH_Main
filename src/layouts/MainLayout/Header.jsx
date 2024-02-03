@@ -13,7 +13,6 @@ import {
 } from "antd";
 import { IoHome } from "react-icons/io5";
 import { FaBookOpen } from "react-icons/fa";
-import { CiSearch } from "react-icons/ci";
 import LogoHeader from "../../assets/logoheader.png";
 import { IoMenu } from "react-icons/io5";
 import { useSelector } from "react-redux";
@@ -21,6 +20,7 @@ import { useLogoutMutation } from "../../pages/Auth/auth.service";
 import { CgProfile } from "react-icons/cg";
 import { IoExitOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
+import { IoIosSearch } from "react-icons/io";
 const { Text } = Typography;
 
 export default function Header() {
@@ -28,6 +28,7 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useSelector((state) => state.user);
+  const [fixed, setFixed] = useState(false);
 
   const [, setCurrentProfileSubMeu] = useState("subMenuProfile");
   const [logout, logOutRes] = useLogoutMutation();
@@ -40,45 +41,55 @@ export default function Header() {
       navigate(`${e.key}`);
     }
     if (open) {
-        setOpen(false);
+      setOpen(false);
     }
   };
 
+  const scrollDown = () => {
+    if (window.scrollY >= 420) {
+      setFixed(true);
+    } else {
+      setFixed(false);
+    }
+  };
+
+  useEffect(() => {
+    scrollDown();
+  }, []);
+
+  window.addEventListener("scroll", scrollDown);
+
   const dropDownItem = (role) => {
     let itemDefault = [
-        {
-          label: "Trang Cá Nhân",
-          key: "/profile",
-          icon: <CgProfile />,
-        },
-        {
-          label: "Đăng xuất",
-          key: "/logout",
-          icon: <IoExitOutline />,
-        },
-    ]
+      {
+        label: "Trang Cá Nhân",
+        key: "/profile",
+        icon: <CgProfile />,
+      },
+      {
+        label: "Đăng xuất",
+        key: "/logout",
+        icon: <IoExitOutline />,
+      },
+    ];
     switch (role) {
       case 1:
-        itemDefault.unshift(
-          {
-            label: "Trang quản lí",
-            key: "/dashboard",
-            icon: <IoHome />,
-          }
-        );
+        itemDefault.unshift({
+          label: "Trang quản lí",
+          key: "/dashboard",
+          icon: <IoHome />,
+        });
         break;
       case 0:
-        itemDefault.unshift(
-          {
-            label: "Khoá học của tôi",
-            key: "/course/mine",
-            icon: <FaBookOpen />,
-          }
-        );
+        itemDefault.unshift({
+          label: "Khoá học của tôi",
+          key: "/course/mine",
+          icon: <FaBookOpen />,
+        });
         break;
     }
     return itemDefault;
-  }
+  };
 
   useEffect(() => {
     setCurrent(`/${location.pathname.split("/")[1]}`);
@@ -106,8 +117,8 @@ export default function Header() {
   );
 
   useEffect(() => {
-    if(logOutRes.isSuccess) {
-        window.location.reload(false);
+    if (logOutRes.isSuccess) {
+      window.location.reload(false);
     }
     if (logOutRes.isError) {
       if (Array.isArray(logOutRes.error.data.error)) {
@@ -130,6 +141,7 @@ export default function Header() {
 
   const onClickMenuL = (e) => {
     navigate(e.key);
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (open) {
       setOpen(false);
     }
@@ -144,12 +156,16 @@ export default function Header() {
       key: "/intro",
     },
     {
-      label: "Liều thuốc",
+      label: "Dược phẩm",
       key: "/product",
     },
     {
-      label: "Khoá Học Gia Liễu",
+      label: "Khoá Học Da Liễu",
       key: "/course",
+    },
+    {
+      label: "Câu chuyện khách hàng",
+      key: "/feedback",
     },
     {
       label: "Blog",
@@ -166,7 +182,7 @@ export default function Header() {
         <div className="ip_search">
           <Input
             placeholder="Tìm kiếm..."
-            prefix={<CiSearch />}
+            prefix={<IoIosSearch />}
             style={{
               width: "250px",
               height: "29px",
@@ -204,14 +220,50 @@ export default function Header() {
           )}
         </div>
       </header>
-      <header className="header_bottom">
+      <header className={`header_bottom ${fixed ? "fixed" : ""}`}>
         <div className="menus">
-          <Menu
-            onClick={onClickMenuL}
-            selectedKeys={[current]}
-            mode="horizontal"
-            items={items}
-          />
+          <div className="logoheader">
+            <Link
+              to="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              <img src={LogoHeader} alt="Ảnh Logo Nam y đường" />
+            </Link>
+          </div>
+          <div>
+            <Menu
+              onClick={onClickMenuL}
+              selectedKeys={[current]}
+              mode={`${fixed ? "" : "horizontal"}`}
+              items={items}
+            />
+            <div className="btn_login">
+              {!user ? (
+                <Button
+                  onClick={() => {
+                    navigate("/login");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  Đăng Nhập
+                </Button>
+              ) : (
+                <Dropdown
+                  menu={{
+                    items: dropDownItem(user?.role),
+                    onClick: setCurSubMeuProfile,
+                  }}
+                >
+                  <div>
+                    <IconProfile />
+                    <Text strong style={{ marginRight: "30px" }}>
+                      {user?.firstName?.slice(0, 7)}...
+                    </Text>
+                  </div>
+                </Dropdown>
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="logoheader">

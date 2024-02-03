@@ -1,8 +1,9 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { Mutex } from "async-mutex";
 import { logOut, setToken } from "../pages/Auth/authSlice";
+import { EN_URL_API } from "../untils/constant"
 
-const baseUrl = `${import.meta.env.EN_URL_API}/`;
+const baseUrl = `${EN_URL_API}/`;
 
 const baseQuery = fetchBaseQuery({
   baseUrl,

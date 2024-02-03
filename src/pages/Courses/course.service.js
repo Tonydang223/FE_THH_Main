@@ -42,10 +42,12 @@ export const courseApis = createApi({
         return response.data;
       },
     }),
-    getCodeCourse: builder.query({
-      query: (param) => {
+    confirmCode: builder.mutation({
+      query: (data) => {
         return {
-          url: `course/code/${param.id}/${param.codeHex}`,
+          url: `course/confirm/${data.id}/`,
+          method: "POST",
+          body: {code: data.code}
         };
       },
       transformResponse: (response) => {
@@ -133,5 +135,5 @@ export const {
   useDeleteCourseMutation,
   useDeleteCourseRestoreMutation,
   useDeleteCourseRestoreBackMutation,
-  useGetCodeCourseQuery
+  useConfirmCodeMutation,
 } = courseApis;

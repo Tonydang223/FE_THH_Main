@@ -682,5 +682,22 @@
         padding-right: 0;
         padding-left: 0;
     }
+    .footerBar .wrap_content {
+        padding: 8px 9px;
+        p {
+            font-size: 9px;
+        }
+        > p {
+            padding-right:19px;
+            font-size: 10px;
+        }
+        .btn {
+            width: 155px;
+            p span svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
 
 }

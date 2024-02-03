@@ -627,4 +627,59 @@
     .wrapProduct .advertizing_products .content_start {
         height: auto;
     }
+    .wrap_home .chisoWrap .title_home h3 {
+       text-align: center;
+    }
+    .wrap_home .chisoWrap .title_home{
+        margin-bottom: 0;
+    }
+    .wrap_home .chisoWrap {
+        margin: 45px 0 0 0;
+    }
+    .banner_wrap {
+        .row:nth-child(1) {
+            .col-6 h1 {
+                text-align: center;
+            }
+        }
+    }
+    .wrap_home .vids_wrap .wrap_imgsSpace
+    {
+        margin-top: 0;
+        .row {
+            .col-6 {
+                width: 100%;
+            }
+            .col-6:nth-child(2) {
+                padding-left: 0 !important;
+                margin-top: 15px;
+            }
+            .col-3 {
+                width: 100% !important;
+            }
+            .col-3:nth-child(2) {
+                margin-top: 15px;
+            }
+            .col-3:nth-child(even) {
+                padding-left: 0 !important;
+            }
+        }
+    }
+    .wrap_home .vids_wrap {
+        .row:nth-child(3),
+        .row:nth-child(4) {
+            .title_home {
+                margin-bottom: 10px;
+                h3 {
+                    text-align: center;
+                }
+            }
+        }
+
+    }
+    .wrap_home .vids_wrap .row .col-4 {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
 }
